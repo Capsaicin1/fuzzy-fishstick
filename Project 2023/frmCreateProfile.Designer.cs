@@ -42,6 +42,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolTipEnterFirstName = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipEnterYourLastName = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipEnterUsername = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipBackToLogin = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipConfirmDetails = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,6 +116,7 @@
             this.txtCreateUsername.Name = "txtCreateUsername";
             this.txtCreateUsername.Size = new System.Drawing.Size(312, 22);
             this.txtCreateUsername.TabIndex = 7;
+            this.toolTipEnterUsername.SetToolTip(this.txtCreateUsername, "Enter your username.");
             // 
             // label4
             // 
@@ -132,6 +136,7 @@
             this.btnBackToLogin.Size = new System.Drawing.Size(112, 42);
             this.btnBackToLogin.TabIndex = 9;
             this.btnBackToLogin.Text = "Back";
+            this.toolTipBackToLogin.SetToolTip(this.btnBackToLogin, "Go back to the login page.");
             this.btnBackToLogin.UseVisualStyleBackColor = true;
             this.btnBackToLogin.Click += new System.EventHandler(this.btnBackToLogin_Click);
             // 
@@ -143,6 +148,7 @@
             this.btnConfirmProfileDetails.Size = new System.Drawing.Size(112, 42);
             this.btnConfirmProfileDetails.TabIndex = 10;
             this.btnConfirmProfileDetails.Text = "Confirm";
+            this.toolTipConfirmDetails.SetToolTip(this.btnConfirmProfileDetails, "Confirm your details.");
             this.btnConfirmProfileDetails.UseVisualStyleBackColor = true;
             this.btnConfirmProfileDetails.Click += new System.EventHandler(this.btnConfirmProfileDetails_Click);
             // 
@@ -197,5 +203,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolTip toolTipEnterFirstName;
         private System.Windows.Forms.ToolTip toolTipEnterYourLastName;
+        private System.Windows.Forms.ToolTip toolTipEnterUsername;
+        private System.Windows.Forms.ToolTip toolTipBackToLogin;
+        private System.Windows.Forms.ToolTip toolTipConfirmDetails;
     }
 }
