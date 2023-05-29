@@ -67,6 +67,12 @@
     <Compile Include="frmFirstPage.Designer.cs">
       <DependentUpon>frmFirstPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReadlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReadlist.Designer.cs">
+      <DependentUpon>frmReadlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModel.cs" />
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFirstPage.resx">
       <DependentUpon>frmFirstPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReadlist.resx">
+      <DependentUpon>frmReadlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

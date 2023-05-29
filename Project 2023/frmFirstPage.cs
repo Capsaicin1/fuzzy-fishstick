@@ -19,6 +19,7 @@ namespace Project_2023
         RadioButton - rbtn
         CheckBox - cbx
         Form - frm
+        ListBox - lbx
      */
     public partial class frmFirstPage : Form
     {

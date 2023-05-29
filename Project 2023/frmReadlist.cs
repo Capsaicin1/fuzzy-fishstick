@@ -21,22 +21,11 @@ namespace Project_2023
        Form - frm
        ListBox - lbx
     */
-    public partial class frmCreateProfile : Form
+    public partial class frmReadlist : Form
     {
-        public frmCreateProfile()
+        public frmReadlist()
         {
             InitializeComponent();
-        }
-
-        private void btnBackToLogin_Click(object sender, EventArgs e)
-        {
-            //Hides the Create Profile form
-            this.Close();
-        }
-
-        private void btnConfirmProfileDetails_Click(object sender, EventArgs e)
-        {
-            this.Hide();
         }
     }
 }
