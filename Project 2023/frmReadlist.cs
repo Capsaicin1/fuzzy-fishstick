@@ -23,9 +23,32 @@ namespace Project_2023
     */
     public partial class frmReadlist : Form
     {
+        List<Book> Readlist = new List<Book>();
         public frmReadlist()
         {
             InitializeComponent();
+
+            loadReadlist();
+        }
+
+        private void loadReadlist()
+        {
+
+        }
+
+        private void wireUpReadlist()
+        {
+
+        }
+
+        private void btnAddToReadlist_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRefreshReadlist_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

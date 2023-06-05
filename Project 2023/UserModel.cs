@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_2023
 {
+    // Creating a new class to represent a user in my code.
     public class UserModel
     {
         public int Id { get; set; }

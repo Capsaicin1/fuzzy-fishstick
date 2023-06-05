@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project_2023
 {
+    // Creating a class to represent a book in my code.
     public class Book
     {
         public int id { get; set; }
