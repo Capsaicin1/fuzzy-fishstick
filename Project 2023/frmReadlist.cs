@@ -49,9 +49,15 @@ namespace Project_2023
 
         private void btnAddToReadlist_Click(object sender, EventArgs e)
         {
-            Book b = new Book();
+            Book b = new Book
+            {
+                Title = txtEnterBookName.Text,
+                Author = txtEnterAuthor.Text,
+                Genre = cmbEnterGenre.Text,
+                hasRead = cmbEnterHasRead.Text
+            };
 
-            b.Title = txtEnterBookName.Text;
+            Convert.ToInt32(cmbEnterHasRead.SelectedItem);
 
             SqliteDataAccess.saveBook(b);
 

@@ -28,7 +28,7 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Books (Title) values (@Title)", book);
+                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title)", book);
             }
         }
 
