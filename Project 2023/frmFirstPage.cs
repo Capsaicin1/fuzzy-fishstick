@@ -40,5 +40,15 @@ namespace Project_2023
             //Show this form again when CreateProfile form is closed
             this.Show();
         }
+
+        private void btnContinueFirstPage_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            frmReadlist thirdform = new frmReadlist();
+            thirdform.ShowDialog();
+
+            this.Show();
+        }
     }
 }

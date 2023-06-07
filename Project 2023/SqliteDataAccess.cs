@@ -13,11 +13,13 @@ namespace Project_2023
     // A seperate class to access my database. I will write all of my SQL queries in this class.
     public class SqliteDataAccess
     {
-        public static List<Book> LoadPeople()
+        /*Function to load the books in the books table from my database int the readlistbox.
+         It does this by loading up a new connection to the database and running a query */
+        public static List<Book> LoadBooks()
         {
             using (IDbConnection cnn  = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Book>("select * from Books", new DynamicParameters());
+                var output = cnn.Query<Book>("select title from Books", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -26,7 +28,7 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", book);
+                cnn.Execute("insert into Books (Title) values (@Title)", book);
             }
         }
 

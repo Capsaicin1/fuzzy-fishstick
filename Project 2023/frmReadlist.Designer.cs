@@ -32,6 +32,7 @@
             this.lbxToRead = new System.Windows.Forms.ListBox();
             this.btnAddToReadlist = new System.Windows.Forms.Button();
             this.btnRefreshReadlist = new System.Windows.Forms.Button();
+            this.txtEnterBookName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbxHaveRead
@@ -72,11 +73,19 @@
             this.btnRefreshReadlist.UseVisualStyleBackColor = true;
             this.btnRefreshReadlist.Click += new System.EventHandler(this.btnRefreshReadlist_Click);
             // 
+            // txtEnterBookName
+            // 
+            this.txtEnterBookName.Location = new System.Drawing.Point(55, 162);
+            this.txtEnterBookName.Name = "txtEnterBookName";
+            this.txtEnterBookName.Size = new System.Drawing.Size(100, 22);
+            this.txtEnterBookName.TabIndex = 4;
+            // 
             // frmReadlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtEnterBookName);
             this.Controls.Add(this.btnRefreshReadlist);
             this.Controls.Add(this.btnAddToReadlist);
             this.Controls.Add(this.lbxToRead);
@@ -84,6 +93,7 @@
             this.Name = "frmReadlist";
             this.Text = "frmReadlist";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -93,5 +103,6 @@
         private System.Windows.Forms.ListBox lbxToRead;
         private System.Windows.Forms.Button btnAddToReadlist;
         private System.Windows.Forms.Button btnRefreshReadlist;
+        private System.Windows.Forms.TextBox txtEnterBookName;
     }
 }
