@@ -19,7 +19,7 @@ namespace Project_2023
         {
             using (IDbConnection cnn  = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Book>("select title from Books", new DynamicParameters());
+                var output = cnn.Query<Book>("SELECT Title FROM Books", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -28,7 +28,7 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title)", book);
+                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", book);
             }
         }
 

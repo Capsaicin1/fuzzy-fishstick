@@ -165,6 +165,7 @@
             this.Controls.Add(this.lbxHaveRead);
             this.Name = "frmReadlist";
             this.Text = "frmReadlist";
+            this.Load += new System.EventHandler(this.frmReadlist_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

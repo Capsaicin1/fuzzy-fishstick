@@ -23,6 +23,10 @@ namespace Project_2023
     */
     public partial class frmReadlist : Form
     {
+        string[] bookGenre = { "Fiction", "Non-Fiction" };
+        string[] hasRead = { "1", "0" };
+
+
         // Creating a list where my data will load into.
         List<Book> Readlist = new List<Book>();
         public frmReadlist()
@@ -68,6 +72,16 @@ namespace Project_2023
         private void btnRefreshReadlist_Click(object sender, EventArgs e)
         {
             loadReadlist();
+        }
+
+        private void frmReadlist_Load(object sender, EventArgs e)
+        {
+            //For loop loops through the bookGenre array and populates the EnterGenre combobox with those values.
+            for (int i = 0; i < bookGenre.Length; i++)
+                cmbEnterGenre.Items.Add(bookGenre[i]);
+            //For loop loops through the hasRead array and populates the EnterHasRead combobox with those values.
+            for (int i = 0;i < hasRead.Length; i++)
+                cmbEnterHasRead.Items.Add(hasRead[i]);
         }
     }
 }
