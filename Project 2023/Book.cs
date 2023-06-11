@@ -15,5 +15,13 @@ namespace Project_2023
         public string Genre { get; set; }
         public string hasRead { get; set; }
 
+        public string BookTitle
+        {
+            get 
+            {
+                return $"{Title}";
+            }
+        }
+
     }
 }

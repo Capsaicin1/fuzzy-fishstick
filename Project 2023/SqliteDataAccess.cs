@@ -19,11 +19,12 @@ namespace Project_2023
         {
             using (IDbConnection cnn  = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Book>("SELECT Title FROM Books", new DynamicParameters());
+                var output = cnn.Query<Book>("select Title from Books", new DynamicParameters());
                 return output.ToList();
             }
         }
 
+        /**/
         public static void saveBook(Book book)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
