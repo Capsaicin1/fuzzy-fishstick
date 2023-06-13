@@ -34,9 +34,27 @@ namespace Project_2023
             this.Close();
         }
 
+        /*Creates a new user model 'u' and calls the addUser function.
+         The function takes the values of 'u' and inserts it into the
+         user table in my database.It hides this form causing the login
+         form to open again.*/
         private void btnConfirmProfileDetails_Click(object sender, EventArgs e)
         {
+            UserModel u = new UserModel
+            {
+                Username = txtCreateUsername.Text,
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+            };
+
+            SqliteDataAccess.addUser(u);
+
+            txtCreateUsername.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+
             this.Hide();
         }
+
     }
 }

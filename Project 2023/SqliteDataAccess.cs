@@ -33,6 +33,14 @@ namespace Project_2023
             }
         }
 
+        public static void addUser(UserModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)", user);
+            }
+        }
+
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

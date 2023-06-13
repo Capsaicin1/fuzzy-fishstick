@@ -117,6 +117,7 @@
             this.txtCreateUsername.Size = new System.Drawing.Size(312, 22);
             this.txtCreateUsername.TabIndex = 7;
             this.toolTipEnterUsername.SetToolTip(this.txtCreateUsername, "Enter your username.");
+
             // 
             // label4
             // 
