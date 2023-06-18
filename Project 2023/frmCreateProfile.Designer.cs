@@ -45,6 +45,7 @@
             this.toolTipEnterUsername = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipBackToLogin = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipConfirmDetails = new System.Windows.Forms.ToolTip(this.components);
+            this.lblUsernameError = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -117,7 +118,6 @@
             this.txtCreateUsername.Size = new System.Drawing.Size(312, 22);
             this.txtCreateUsername.TabIndex = 7;
             this.toolTipEnterUsername.SetToolTip(this.txtCreateUsername, "Enter your username.");
-
             // 
             // label4
             // 
@@ -155,6 +155,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblUsernameError);
             this.groupBox1.Controls.Add(this.btnConfirmProfileDetails);
             this.groupBox1.Controls.Add(this.btnBackToLogin);
             this.groupBox1.Controls.Add(this.label4);
@@ -172,6 +173,15 @@
             this.groupBox1.Size = new System.Drawing.Size(335, 331);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
+            // 
+            // lblUsernameError
+            // 
+            this.lblUsernameError.AutoSize = true;
+            this.lblUsernameError.Location = new System.Drawing.Point(98, 179);
+            this.lblUsernameError.Name = "lblUsernameError";
+            this.lblUsernameError.Size = new System.Drawing.Size(44, 16);
+            this.lblUsernameError.TabIndex = 11;
+            this.lblUsernameError.Text = "label5";
             // 
             // frmCreateProfile
             // 
@@ -207,5 +217,6 @@
         private System.Windows.Forms.ToolTip toolTipEnterUsername;
         private System.Windows.Forms.ToolTip toolTipBackToLogin;
         private System.Windows.Forms.ToolTip toolTipConfirmDetails;
+        private System.Windows.Forms.Label lblUsernameError;
     }
 }

@@ -24,7 +24,8 @@ namespace Project_2023
             }
         }
 
-        /**/
+        /*This function inserts the book data the user enters into the books table in my database
+         by executing sql.*/
         public static void saveBook(Book book)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -33,14 +34,29 @@ namespace Project_2023
             }
         }
 
+        /*This function inserts the user data the user enters into the user table in my
+         database by executing sql.*/
         public static void addUser(UserModel user)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            while (true)
             {
-                cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)", user);
+                try
+                {
+                    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                    {
+                        cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)", user);
+                    }
+
+                    break;
+                }
+                catch
+                {
+                    
+                }
             }
         }
 
+        // This function loads the connection string.
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
