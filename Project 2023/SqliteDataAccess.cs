@@ -36,7 +36,7 @@ namespace Project_2023
 
         /*This function inserts the user data the user enters into the user table in my
          database by executing sql.*/
-        public static void addUser(UserModel user)
+        public static string addUser(UserModel user)
         {
             while (true)
             {
@@ -47,12 +47,13 @@ namespace Project_2023
                         cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)", user);
                     }
 
-                    break;
+                    return null;
                 }
                 catch
                 {
-                    
+                    return "Your username has to be unique.";
                 }
+
             }
         }
 
