@@ -40,12 +40,12 @@
             this.btnBackToLogin = new System.Windows.Forms.Button();
             this.btnConfirmProfileDetails = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblUsernameError = new System.Windows.Forms.Label();
             this.toolTipEnterFirstName = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipEnterYourLastName = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipEnterUsername = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipBackToLogin = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipConfirmDetails = new System.Windows.Forms.ToolTip(this.components);
-            this.lblUsernameError = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -179,9 +179,8 @@
             this.lblUsernameError.AutoSize = true;
             this.lblUsernameError.Location = new System.Drawing.Point(98, 179);
             this.lblUsernameError.Name = "lblUsernameError";
-            this.lblUsernameError.Size = new System.Drawing.Size(44, 16);
+            this.lblUsernameError.Size = new System.Drawing.Size(0, 16);
             this.lblUsernameError.TabIndex = 11;
-            this.lblUsernameError.Text = "label5";
             // 
             // frmCreateProfile
             // 

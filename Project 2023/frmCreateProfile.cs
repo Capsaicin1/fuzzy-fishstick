@@ -40,6 +40,8 @@ namespace Project_2023
          form to open again.*/
         private void btnConfirmProfileDetails_Click(object sender, EventArgs e)
         {
+            string errorLabel = null;
+
             UserModel u = new UserModel
             {
                 Username = txtCreateUsername.Text,
@@ -47,13 +49,18 @@ namespace Project_2023
                 LastName = txtLastName.Text,
             };
 
-            SqliteDataAccess.addUser(u);
+            errorLabel = SqliteDataAccess.addUser(u);
+            lblUsernameError.Text = errorLabel;
 
             txtCreateUsername.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
-
-            this.Hide();
+            
+            
+            if (errorLabel == null)
+            {
+                this.Close();
+            }
         }
 
     }
