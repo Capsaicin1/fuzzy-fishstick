@@ -57,6 +57,14 @@ namespace Project_2023
             }
         }
 
+        public static void retriveUserLogin()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("select from User (userID) values (@userID)");
+            }
+        }
+
         // This function loads the connection string.
         private static string LoadConnectionString(string id = "Default")
         {
