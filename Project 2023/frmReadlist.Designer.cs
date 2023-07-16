@@ -45,27 +45,29 @@
             // lbxHaveRead
             // 
             this.lbxHaveRead.FormattingEnabled = true;
-            this.lbxHaveRead.Location = new System.Drawing.Point(41, 49);
-            this.lbxHaveRead.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxHaveRead.ItemHeight = 16;
+            this.lbxHaveRead.Location = new System.Drawing.Point(55, 60);
+            this.lbxHaveRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxHaveRead.Name = "lbxHaveRead";
-            this.lbxHaveRead.Size = new System.Drawing.Size(91, 69);
+            this.lbxHaveRead.Size = new System.Drawing.Size(120, 84);
             this.lbxHaveRead.TabIndex = 0;
             // 
             // lbxToRead
             // 
             this.lbxToRead.FormattingEnabled = true;
-            this.lbxToRead.Location = new System.Drawing.Point(165, 49);
-            this.lbxToRead.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxToRead.ItemHeight = 16;
+            this.lbxToRead.Location = new System.Drawing.Point(220, 60);
+            this.lbxToRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbxToRead.Name = "lbxToRead";
-            this.lbxToRead.Size = new System.Drawing.Size(91, 69);
+            this.lbxToRead.Size = new System.Drawing.Size(120, 84);
             this.lbxToRead.TabIndex = 1;
             // 
             // btnAddToReadlist
             // 
-            this.btnAddToReadlist.Location = new System.Drawing.Point(41, 269);
-            this.btnAddToReadlist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddToReadlist.Location = new System.Drawing.Point(55, 331);
+            this.btnAddToReadlist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddToReadlist.Name = "btnAddToReadlist";
-            this.btnAddToReadlist.Size = new System.Drawing.Size(90, 28);
+            this.btnAddToReadlist.Size = new System.Drawing.Size(120, 34);
             this.btnAddToReadlist.TabIndex = 2;
             this.btnAddToReadlist.Text = "Add To Readlist";
             this.btnAddToReadlist.UseVisualStyleBackColor = true;
@@ -73,10 +75,10 @@
             // 
             // btnRefreshReadlist
             // 
-            this.btnRefreshReadlist.Location = new System.Drawing.Point(165, 162);
-            this.btnRefreshReadlist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRefreshReadlist.Location = new System.Drawing.Point(220, 199);
+            this.btnRefreshReadlist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRefreshReadlist.Name = "btnRefreshReadlist";
-            this.btnRefreshReadlist.Size = new System.Drawing.Size(56, 19);
+            this.btnRefreshReadlist.Size = new System.Drawing.Size(75, 23);
             this.btnRefreshReadlist.TabIndex = 3;
             this.btnRefreshReadlist.Text = "Refresh";
             this.btnRefreshReadlist.UseVisualStyleBackColor = true;
@@ -84,83 +86,79 @@
             // 
             // txtEnterBookName
             // 
-            this.txtEnterBookName.Location = new System.Drawing.Point(56, 132);
-            this.txtEnterBookName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEnterBookName.Location = new System.Drawing.Point(75, 162);
+            this.txtEnterBookName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEnterBookName.Name = "txtEnterBookName";
-            this.txtEnterBookName.Size = new System.Drawing.Size(76, 20);
+            this.txtEnterBookName.Size = new System.Drawing.Size(100, 22);
             this.txtEnterBookName.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 136);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(4, 167);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(33, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Title";
             // 
             // cmbEnterGenre
             // 
             this.cmbEnterGenre.FormattingEnabled = true;
-            this.cmbEnterGenre.Location = new System.Drawing.Point(56, 189);
-            this.cmbEnterGenre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbEnterGenre.Location = new System.Drawing.Point(75, 233);
+            this.cmbEnterGenre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEnterGenre.Name = "cmbEnterGenre";
-            this.cmbEnterGenre.Size = new System.Drawing.Size(92, 21);
+            this.cmbEnterGenre.Size = new System.Drawing.Size(121, 24);
             this.cmbEnterGenre.TabIndex = 6;
             // 
             // cmbEnterHasRead
             // 
             this.cmbEnterHasRead.FormattingEnabled = true;
-            this.cmbEnterHasRead.Location = new System.Drawing.Point(56, 213);
-            this.cmbEnterHasRead.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbEnterHasRead.Location = new System.Drawing.Point(75, 262);
+            this.cmbEnterHasRead.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEnterHasRead.Name = "cmbEnterHasRead";
-            this.cmbEnterHasRead.Size = new System.Drawing.Size(92, 21);
+            this.cmbEnterHasRead.Size = new System.Drawing.Size(121, 24);
             this.cmbEnterHasRead.TabIndex = 7;
             // 
             // txtEnterAuthor
             // 
-            this.txtEnterAuthor.Location = new System.Drawing.Point(56, 162);
-            this.txtEnterAuthor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEnterAuthor.Location = new System.Drawing.Point(75, 199);
+            this.txtEnterAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEnterAuthor.Name = "txtEnterAuthor";
-            this.txtEnterAuthor.Size = new System.Drawing.Size(76, 20);
+            this.txtEnterAuthor.Size = new System.Drawing.Size(100, 22);
             this.txtEnterAuthor.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 167);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(7, 206);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 9;
             this.label2.Text = "Author";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 195);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(7, 240);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(44, 16);
             this.label3.TabIndex = 10;
             this.label3.Text = "Genre";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 219);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(7, 270);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.Size = new System.Drawing.Size(41, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "Read";
             // 
             // frmReadlist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -173,7 +171,7 @@
             this.Controls.Add(this.btnAddToReadlist);
             this.Controls.Add(this.lbxToRead);
             this.Controls.Add(this.lbxHaveRead);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmReadlist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmReadlist";

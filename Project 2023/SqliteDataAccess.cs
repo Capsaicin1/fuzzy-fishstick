@@ -13,6 +13,7 @@ namespace Project_2023
     // A seperate class to access my database. I will write all of my SQL queries in this class.
     public class SqliteDataAccess
     {
+        public string testname = "test";
         /*Function to load the books in the books table from my database int the readlistbox.
          It does this by loading up a new connection to the database and running a query */
         public static List<Book> LoadBooks()
@@ -61,7 +62,7 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("select from User (userID) values (@userID)");
+                cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = '" + testname + "'))");
             }
         }
 
