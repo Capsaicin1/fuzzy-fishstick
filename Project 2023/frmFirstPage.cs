@@ -48,11 +48,12 @@ namespace Project_2023
             frmReadlist thirdform = new frmReadlist();
             thirdform.ShowDialog();
 
-            UserModel userModel = new UserModel
+            UserModel u = new UserModel
             {
                 Username = txtEnterUsername.Text,
             };
-            
+
+            SqliteDataAccess.retriveUserLogin(u);
 
             this.Show();
         }

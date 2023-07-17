@@ -10,6 +10,7 @@ using System.Configuration;
 
 namespace Project_2023
 {
+    
     // A seperate class to access my database. I will write all of my SQL queries in this class.
     public class SqliteDataAccess
     {
@@ -58,12 +59,22 @@ namespace Project_2023
             }
         }
 
-        public static void retriveUserLogin()
+        /*public static void dynamic_data_entry()
         {
+            UserModel user = new UserModel
+            {
+                Username = "test",
+            };
+        }*/
+
+        public static string retriveUserLogin(UserModel user)
+        {            
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = '" + testname + "'))");
+                cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = test))", user);
             }
+
+            return null;
         }
 
         // This function loads the connection string.
