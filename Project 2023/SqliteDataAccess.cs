@@ -67,14 +67,14 @@ namespace Project_2023
             };
         }*/
 
-        public static string retriveUserLogin(UserModel user)
+        public static List<string> retriveUserLogin(UserModel user)
         {            
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = test))", user);
+                int output = cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = values (@Username)))", user);
+                output.ToString();
+                return output.ToList();
             }
-
-            return null;
         }
 
         // This function loads the connection string.
