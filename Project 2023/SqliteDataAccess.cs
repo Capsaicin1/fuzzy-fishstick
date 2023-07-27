@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using Dapper;
 using System.Data;
 using System.Configuration;
+using System.Web;
 
 namespace Project_2023
 {
@@ -68,12 +69,11 @@ namespace Project_2023
         }*/
 
         public static List<string> retriveUserLogin(UserModel user)
-        {            
+        {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                int output = cnn.Execute("SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = values (@Username)))", user);
-                output.ToString();
-                return output.ToList();
+                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = {user}))");
+                return output.ToList() ;
             }
         }
 

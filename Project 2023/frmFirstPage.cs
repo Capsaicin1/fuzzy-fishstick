@@ -23,7 +23,7 @@ namespace Project_2023
      */
     public partial class frmFirstPage : Form
     {
-        List <string> userReadlists = new List <string> ();
+        List <ReadlistModel> userReadlists = new List <ReadlistModel>();
         public frmFirstPage()
         {
             InitializeComponent();
