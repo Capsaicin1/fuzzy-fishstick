@@ -57,7 +57,7 @@
             // txtEnterUsername
             // 
             this.txtEnterUsername.Location = new System.Drawing.Point(17, 117);
-            this.txtEnterUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEnterUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtEnterUsername.Name = "txtEnterUsername";
             this.txtEnterUsername.Size = new System.Drawing.Size(369, 22);
             this.txtEnterUsername.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             this.btnContinueFirstPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnContinueFirstPage.Location = new System.Drawing.Point(253, 206);
-            this.btnContinueFirstPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnContinueFirstPage.Margin = new System.Windows.Forms.Padding(4);
             this.btnContinueFirstPage.Name = "btnContinueFirstPage";
             this.btnContinueFirstPage.Size = new System.Drawing.Size(111, 43);
             this.btnContinueFirstPage.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             this.btnCreateProfile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateProfile.Location = new System.Drawing.Point(37, 206);
-            this.btnCreateProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateProfile.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateProfile.Name = "btnCreateProfile";
             this.btnCreateProfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnCreateProfile.Size = new System.Drawing.Size(111, 43);
@@ -120,9 +120,9 @@
             this.gbxFrontPage.Controls.Add(this.txtEnterUsername);
             this.gbxFrontPage.Controls.Add(this.lblHeading);
             this.gbxFrontPage.Location = new System.Drawing.Point(21, 6);
-            this.gbxFrontPage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxFrontPage.Margin = new System.Windows.Forms.Padding(4);
             this.gbxFrontPage.Name = "gbxFrontPage";
-            this.gbxFrontPage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbxFrontPage.Padding = new System.Windows.Forms.Padding(4);
             this.gbxFrontPage.Size = new System.Drawing.Size(415, 295);
             this.gbxFrontPage.TabIndex = 6;
             this.gbxFrontPage.TabStop = false;
@@ -139,7 +139,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 315);
             this.Controls.Add(this.gbxFrontPage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "frmFirstPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YourReadlist";

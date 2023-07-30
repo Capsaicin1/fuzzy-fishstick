@@ -15,10 +15,9 @@ namespace Project_2023
     // A seperate class to access my database. I will write all of my SQL queries in this class.
     public class SqliteDataAccess
     {
-        public string testname = "test";
         /*Function to load the books in the books table from my database int the readlistbox.
          It does this by loading up a new connection to the database and running a query */
-        public static List<Book> LoadBooks()
+         public static List<Book> LoadBooks()
         {
             using (IDbConnection cnn  = new SQLiteConnection(LoadConnectionString()))
             {
@@ -36,6 +35,8 @@ namespace Project_2023
                 cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", book);
             }
         }
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
         /*This function inserts the user data the user enters into the user table in my
          database by executing sql.*/
@@ -59,14 +60,6 @@ namespace Project_2023
 
             }
         }
-
-        /*public static void dynamic_data_entry()
-        {
-            UserModel user = new UserModel
-            {
-                Username = "test",
-            };
-        }*/
 
         public static List<string> retriveUserLogin(UserModel user)
         {
