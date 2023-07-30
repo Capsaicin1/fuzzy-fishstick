@@ -61,6 +61,27 @@ namespace Project_2023
             }
         }
 
+        public static string createReadlist()
+        {
+            while(true)
+            {
+                try
+                {
+                    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                    {
+                        cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)");
+                    }
+
+                    return null;
+                }
+                catch 
+                {
+                    return "Your ";
+                }
+            }
+
+        }
+
         public static List<string> retriveUserLogin(UserModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -69,6 +90,8 @@ namespace Project_2023
                 return output.ToList() ;
             }
         }
+
+
 
         // This function loads the connection string.
         private static string LoadConnectionString(string id = "Default")
