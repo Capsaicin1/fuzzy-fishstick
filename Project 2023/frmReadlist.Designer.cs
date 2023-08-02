@@ -196,6 +196,7 @@
             this.btnCreateNewReadlist.TabIndex = 16;
             this.btnCreateNewReadlist.Text = "Create";
             this.btnCreateNewReadlist.UseVisualStyleBackColor = true;
+            this.btnCreateNewReadlist.Click += new System.EventHandler(this.btnCreateNewReadlist_Click);
             // 
             // txtReadlistErrorLabel
             // 

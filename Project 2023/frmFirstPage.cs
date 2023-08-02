@@ -23,7 +23,7 @@ namespace Project_2023
      */
     public partial class frmFirstPage : Form
     {
-        List <ReadlistModel> userReadlists = new List <ReadlistModel>();
+        List <string> userReadlists = new List <string>();
         public frmFirstPage()
         {
             InitializeComponent();
@@ -44,17 +44,20 @@ namespace Project_2023
 
         private void btnContinueFirstPage_Click(object sender, EventArgs e)
         {
+            //Hides frmFirstPage
             this.Hide();
 
-            frmReadlist thirdform = new frmReadlist();
-            thirdform.ShowDialog();
-
-            UserModel u = new UserModel
+           /* UserModel u = new UserModel
             {
                 Username = txtEnterUsername.Text,
-            };
+            }; */
 
-            SqliteDataAccess.retriveUserLogin(u);
+            string username = txtEnterUsername.Text;
+
+            userReadlists = SqliteDataAccess.retriveUserLogin(username);
+
+            frmReadlist thirdform = new frmReadlist(userReadlists);
+            thirdform.ShowDialog();
 
             this.Show();
         }

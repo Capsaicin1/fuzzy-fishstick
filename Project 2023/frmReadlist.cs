@@ -25,12 +25,13 @@ namespace Project_2023
     {
         string[] bookGenre = { "Fiction", "Non-Fiction" };
         string[] hasRead = { "1", "0" };
-
+        List<string> userReadlists = new List<string>();
 
         // Creating a list where my data will load into.
         List <Book> Readlist = new List <Book>();
-        public frmReadlist()
+        public frmReadlist(List<string> argsUserReadlists)
         {
+            userReadlists = argsUserReadlists;
             InitializeComponent();
             loadReadlist();
         }
@@ -43,6 +44,8 @@ namespace Project_2023
             //For loop loops through the hasRead array and populates the EnterHasRead combobox with those values.
             for (int i = 0; i < hasRead.Length; i++)
                 cmbEnterHasRead.Items.Add(hasRead[i]);
+            for (int i = 0;i < userReadlists.Count; i++)
+                cmbMyReadlists.Items.Add(userReadlists[i]);
         }
 
         // This function loads the data into the list and wires up the list.
@@ -85,6 +88,12 @@ namespace Project_2023
         private void btnRefreshReadlist_Click(object sender, EventArgs e)
         {
             loadReadlist();
+        }
+
+        private void btnCreateNewReadlist_Click(object sender, EventArgs e)
+        {
+            string readlistName = txtNewReadlistName.Text;
+            SqliteDataAccess.createReadlist(readlistName);
         }
     }
 }

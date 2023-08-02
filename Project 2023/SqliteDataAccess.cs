@@ -61,7 +61,7 @@ namespace Project_2023
             }
         }
 
-        public static string createReadlist()
+        public static string createReadlist(string readlistName)
         {
             while(true)
             {
@@ -69,24 +69,24 @@ namespace Project_2023
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)");
+                        cnn.Execute($"insert into Readlist ({readlistName})");
                     }
 
                     return null;
                 }
                 catch 
                 {
-                    return "Your ";
+                    return "This readlist name already exists.";
                 }
             }
 
         }
 
-        public static List<string> retriveUserLogin(UserModel user)
+        public static List<string> retriveUserLogin(string user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books where userID = (SELECT userID FROM User WHERE Username = {user}))");
+                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = {user}))");
                 return output.ToList() ;
             }
         }
