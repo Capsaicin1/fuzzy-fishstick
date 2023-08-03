@@ -44,17 +44,20 @@ namespace Project_2023
 
         private void btnContinueFirstPage_Click(object sender, EventArgs e)
         {
-            //Hides frmFirstPage
-            this.Hide();
-
            /* UserModel u = new UserModel
             {
                 Username = txtEnterUsername.Text,
             }; */
 
             string username = txtEnterUsername.Text;
-
             userReadlists = SqliteDataAccess.retriveUserLogin(username);
+
+            //Hides frmFirstPage
+            if (userReadlists != null)
+            {
+                this.Hide();
+            }
+            
 
             frmReadlist thirdform = new frmReadlist(userReadlists);
             thirdform.ShowDialog();

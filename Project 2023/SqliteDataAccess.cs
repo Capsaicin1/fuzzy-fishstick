@@ -38,8 +38,9 @@ namespace Project_2023
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-        /*This function inserts the user data the user enters into the user table in my
-         database by executing sql.*/
+        /*Inserts the user's username, first name and last name into the user table in my database.
+         Also checks if the username the user is attempting to create already exists. If the username 
+         already exists, the unique constraint in my table fails then it will return the error message. */
         public static string addUser(UserModel user)
         {
             while (true)
@@ -69,7 +70,7 @@ namespace Project_2023
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute($"insert into Readlist ({readlistName})");
+                        cnn.Execute($"insert into Readlist (readlist_Name, userID) values ({readlistName}, )");
                     }
 
                     return null;
@@ -79,15 +80,24 @@ namespace Project_2023
                     return "This readlist name already exists.";
                 }
             }
-
         }
 
         public static List<string> retriveUserLogin(string user)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            while (true)
             {
-                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = {user}))");
-                return output.ToList() ;
+                try
+                {
+                    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                    {
+                        var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{user}'))");
+                        return output.ToList();
+                    }
+                }
+                catch
+                {
+                    
+                }
             }
         }
 
