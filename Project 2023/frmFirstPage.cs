@@ -59,7 +59,7 @@ namespace Project_2023
             }
             
 
-            frmReadlist thirdform = new frmReadlist(userReadlists);
+            frmReadlist thirdform = new frmReadlist(userReadlists, username);
             thirdform.ShowDialog();
 
             this.Show();

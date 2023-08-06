@@ -26,11 +26,13 @@ namespace Project_2023
         string[] bookGenre = { "Fiction", "Non-Fiction" };
         string[] hasRead = { "1", "0" };
         List<string> userReadlists = new List<string>();
+        string username = "";
 
         // Creating a list where my data will load into.
         List <Book> Readlist = new List <Book>();
-        public frmReadlist(List<string> argsUserReadlists)
+        public frmReadlist(List<string> argsUserReadlists, string argsUsername)
         {
+            username = argsUsername;
             userReadlists = argsUserReadlists;
             InitializeComponent();
             loadReadlist();
@@ -92,8 +94,23 @@ namespace Project_2023
 
         private void btnCreateNewReadlist_Click(object sender, EventArgs e)
         {
+            string errorLabel = null;
             string readlistName = txtNewReadlistName.Text;
-            SqliteDataAccess.createReadlist(readlistName);
+            int labelText = 0;
+
+            labelText = SqliteDataAccess.createReadlist(readlistName, username);
+            txtReadlistErrorLabel.Text = errorLabel;
+            string intlabeltest = labelText.ToString();
+            label8.Text = intlabeltest;
+
+
+            txtNewReadlistName.Text = "";
+
+            /*if (errorLabel != null)
+            {
+
+            }
+            */
         }
     }
 }

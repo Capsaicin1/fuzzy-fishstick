@@ -49,35 +49,36 @@ namespace Project_2023
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute("insert into User (Username, FirstName, LastName) values (@Username, @FirstName, @LastName)", user);
+                        cnn.Execute("INSERT INTO User (Username, FirstName, LastName) VALUES (@Username, @FirstName, @LastName)", user);
                     }
 
                     return null;
                 }
                 catch
                 {
-                    return "Your username has to be unique.";
+                    return "Your username has to be unique. Try another name.";
                 }
 
             }
         }
 
-        public static string createReadlist(string readlistName)
-        {
-            while(true)
+        public static string createReadlist(string readlistName, string user)
+        {            
+            while (true)
             {
                 try
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute($"insert into Readlist (readlist_Name, userID) values ({readlistName}, )");
+                        var output = cnn.Execute($"SELECT userID FROM User WHERE Username = '{user}'");
+                        cnn.Execute($"INSERT INTO Readlist (readlist_Name, userID) VALUES ('{readlistName}', {output})");
                     }
 
                     return null;
                 }
                 catch 
                 {
-                    return "This readlist name already exists.";
+                    return "Readlist name has to be unique. Try another name.";
                 }
             }
         }
@@ -100,8 +101,6 @@ namespace Project_2023
                 }
             }
         }
-
-
 
         // This function loads the connection string.
         private static string LoadConnectionString(string id = "Default")
