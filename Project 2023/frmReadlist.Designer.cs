@@ -47,7 +47,6 @@
             this.txtReadlistErrorLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbMyReadlists = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxHaveRead
@@ -225,21 +224,11 @@
             this.cmbMyReadlists.Size = new System.Drawing.Size(121, 24);
             this.cmbMyReadlists.TabIndex = 19;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(339, 247);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 16);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "label8";
-            // 
             // frmReadlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 565);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbMyReadlists);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtReadlistErrorLabel);
@@ -292,6 +281,5 @@
         private System.Windows.Forms.Label txtReadlistErrorLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbMyReadlists;
-        private System.Windows.Forms.Label label8;
     }
 }

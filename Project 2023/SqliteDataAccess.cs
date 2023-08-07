@@ -62,15 +62,22 @@ namespace Project_2023
             }
         }
 
+        public static List<int> getUserID(string user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>($"SELECT userID FROM User WHERE Username = 'Test'");
+                return output.ToList();
+            }
+        }
         public static string createReadlist(string readlistName, string user)
-        {            
+        {   
             while (true)
             {
                 try
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        var output = cnn.Execute($"SELECT userID FROM User WHERE Username = '{user}'");
                         cnn.Execute($"INSERT INTO Readlist (readlist_Name, userID) VALUES ('{readlistName}', {output})");
                     }
 

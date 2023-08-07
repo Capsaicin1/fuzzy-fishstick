@@ -26,6 +26,7 @@ namespace Project_2023
         string[] bookGenre = { "Fiction", "Non-Fiction" };
         string[] hasRead = { "1", "0" };
         List<string> userReadlists = new List<string>();
+        List<int> userIDList = new List<int>();
         string username = "";
 
         // Creating a list where my data will load into.
@@ -96,14 +97,11 @@ namespace Project_2023
         {
             string errorLabel = null;
             string readlistName = txtNewReadlistName.Text;
-            int labelText = 0;
-
-            labelText = SqliteDataAccess.createReadlist(readlistName, username);
-            txtReadlistErrorLabel.Text = errorLabel;
-            string intlabeltest = labelText.ToString();
-            label8.Text = intlabeltest;
 
 
+            //errorLabel = SqliteDataAccess.createReadlist(readlistName, username);
+            //txtReadlistErrorLabel.Text = errorLabel;
+            userIDList = SqliteDataAccess.createReadlist(readlistName, username);
             txtNewReadlistName.Text = "";
 
             /*if (errorLabel != null)
