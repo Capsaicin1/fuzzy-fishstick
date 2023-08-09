@@ -47,6 +47,7 @@
             this.txtReadlistErrorLabel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbMyReadlists = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbxHaveRead
@@ -224,11 +225,22 @@
             this.cmbMyReadlists.Size = new System.Drawing.Size(121, 24);
             this.cmbMyReadlists.TabIndex = 19;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(140, 145);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(108, 31);
+            this.btnRefresh.TabIndex = 20;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmReadlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(899, 565);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.cmbMyReadlists);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtReadlistErrorLabel);
@@ -281,5 +293,6 @@
         private System.Windows.Forms.Label txtReadlistErrorLabel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbMyReadlists;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

@@ -28,11 +28,11 @@ namespace Project_2023
 
         /*This function inserts the book data the user enters into the books table in my database
          by executing sql.*/
-        public static void saveBook(Book book)
+        public static void saveBook(Book bob_book)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", book);
+                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", bob_book);
             }
         }
 
@@ -41,7 +41,7 @@ namespace Project_2023
         /*Inserts the user's username, first name and last name into the user table in my database.
          Also checks if the username the user is attempting to create already exists. If the username 
          already exists, the unique constraint in my table fails then it will return the error message. */
-        public static string addUser(UserModel user)
+        public static string addUser(UserModel bob_user)
         {
             while (true)
             {
@@ -49,7 +49,7 @@ namespace Project_2023
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute("INSERT INTO User (Username, FirstName, LastName) VALUES (@Username, @FirstName, @LastName)", user);
+                        cnn.Execute("INSERT INTO User (Username, FirstName, LastName) VALUES (@Username, @FirstName, @LastName)", bob_user);
                     }
 
                     return null;
@@ -62,15 +62,15 @@ namespace Project_2023
             }
         }
 
-        public static List<int> getUserID(string user)
+        public static List<int> getUserID(string bob_user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<int>($"SELECT userID FROM User WHERE Username = 'Test'");
+                var output = cnn.Query<int>($"SELECT userID FROM User WHERE Username = '{bob_user}'");
                 return output.ToList();
             }
         }
-        public static string createReadlist(string readlistName, string user)
+        public static string createReadlist(string bob_readlistName, int bob_userID)
         {   
             while (true)
             {
@@ -78,7 +78,7 @@ namespace Project_2023
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        cnn.Execute($"INSERT INTO Readlist (readlist_Name, userID) VALUES ('{readlistName}', {output})");
+                        cnn.Execute($"INSERT INTO Readlist (readlist_Name, userID) VALUES ('{bob_readlistName}', '{bob_userID}')");
                     }
 
                     return null;
@@ -90,15 +90,20 @@ namespace Project_2023
             }
         }
 
-        public static List<string> retriveUserLogin(string user)
+        public static List<string> retriveUserLogin(string bob_user)
         {
-            while (true)
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
+                return output.ToList();
+            }
+            /*while (true)
             {
                 try
                 {
                     using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                     {
-                        var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{user}'))");
+                        var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
                         return output.ToList();
                     }
                 }
@@ -106,7 +111,7 @@ namespace Project_2023
                 {
                     
                 }
-            }
+            }*/
         }
 
         // This function loads the connection string.
