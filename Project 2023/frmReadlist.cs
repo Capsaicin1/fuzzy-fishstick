@@ -52,15 +52,22 @@ namespace Project_2023
         {
             //For loop loops through the bookGenre array and populates the EnterGenre combobox with those values.
             for (int i = 0; i < bookGenre.Length; i++)
+            {
                 cmbEnterGenre.Items.Add(bookGenre[i]);
+            }
 
             //For loop loops through the hasRead array and populates the EnterHasRead combobox with those values.
             for (int i = 0; i < hasRead.Length; i++)
+            {
                 cmbEnterHasRead.Items.Add(hasRead[i]);
+            }
 
             //For Loop for populating the MyReadlists combobox with all the user's readlists.
             for (int i = 0; i < userReadlists.Count; i++)
+            {
                 cmbMyReadlists.Items.Add(userReadlists[i]);
+            }
+
         }
 
 
@@ -118,7 +125,10 @@ namespace Project_2023
 
             //Inserts the userID stored in the userID list into a variable.
             for (int i = 0; i < userIDList.Count; i++)
+            {
                 userID = userIDList[i];
+            }
+
 
             /*Creates a new readlist and inserts it into the database. If an error occures, it will send the error message and
               store it in a variable so it can be displayed.*/

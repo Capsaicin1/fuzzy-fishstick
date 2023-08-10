@@ -23,7 +23,16 @@ namespace Project_2023
      */
     public partial class frmFirstPage : Form
     {
-        List <string> userReadlists = new List <string>();
+        List<string> userReadlists = new List<string>();
+        public static bool IsEmpty<T>(List<T> list)
+        {
+            if (list  == null || list.Count == 0)
+            {
+                return true;
+            }
+            return !list.Any();
+        }
+
         public frmFirstPage()
         {
             InitializeComponent();
@@ -46,14 +55,24 @@ namespace Project_2023
         {
 
             string username = txtEnterUsername.Text;
-            userReadlists = SqliteDataAccess.retriveUserLogin(username);
+            bool retry = true;
 
-            //Hides frmFirstPage
-            if (userReadlists != null)
+            while (retry)
             {
-                this.Hide();
+                userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                bool isEmpty = IsEmpty(userReadlists);
+
+                if (!isEmpty)
+                {
+                    this.Hide();
+                    retry = false;
+                }
+                else
+                {
+                    retry = true;
+                }
             }
-            
+
             frmReadlist thirdform = new frmReadlist(userReadlists, username);
             thirdform.ShowDialog();
 

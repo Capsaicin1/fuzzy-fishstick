@@ -92,12 +92,8 @@ namespace Project_2023
 
         public static List<string> retriveUserLogin(string bob_user)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
-                return output.ToList();
-            }
-            /*while (true)
+
+            while (true)
             {
                 try
                 {
@@ -109,9 +105,9 @@ namespace Project_2023
                 }
                 catch
                 {
-                    
+
                 }
-            }*/
+            }
         }
 
         // This function loads the connection string.
