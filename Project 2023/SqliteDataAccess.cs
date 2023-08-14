@@ -56,7 +56,7 @@ namespace Project_2023
                 }
                 catch
                 {
-                    return "Your username has to be unique. Try another name.";
+                    return "Your username has to be unique.";
                 }
 
             }
@@ -90,23 +90,39 @@ namespace Project_2023
             }
         }
 
+
+        // Selects all the readlists associated with the username that is entered.
         public static List<string> retriveUserLogin(string bob_user)
         {
-
-            while (true)
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                try
-                {
-                    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                    {
-                        var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
-                        return output.ToList();
-                    }
-                }
-                catch
-                {
+                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
+                return output.ToList();
+            }
+        }
 
+        //Checks if a list is empty. Function takes 1 parameter (A list) and can return either 'true' or 'false'.
+        public static bool IsEmpty<T>(List<T> list)
+        {
+            if (list == null || list.Count == 0)
+            {
+                return true;
+            }
+            return !list.Any();
+        }
+
+        // Checks if a user exists by executing a query that, if the record exists, it will return 1. Takes one parameter (username) and returns 'true' or 'false'.
+        public static bool userExists(string bob_user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                int output = cnn.Execute($"SELECT 1 FROM User WHERE Username = '{bob_user}'");
+
+                if (output != 1)
+                {
+                    return false;
                 }
+                return true;
             }
         }
 

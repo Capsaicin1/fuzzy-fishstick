@@ -129,18 +129,11 @@ namespace Project_2023
                 userID = userIDList[i];
             }
 
-
             /*Creates a new readlist and inserts it into the database. If an error occures, it will send the error message and
               store it in a variable so it can be displayed.*/
             errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
             txtReadlistErrorLabel.Text = errorLabel;
             txtNewReadlistName.Text = "";
-
-            /*if (errorLabel != null)
-            {
-
-            }
-            */
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

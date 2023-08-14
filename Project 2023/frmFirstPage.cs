@@ -24,14 +24,6 @@ namespace Project_2023
     public partial class frmFirstPage : Form
     {
         List<string> userReadlists = new List<string>();
-        public static bool IsEmpty<T>(List<T> list)
-        {
-            if (list  == null || list.Count == 0)
-            {
-                return true;
-            }
-            return !list.Any();
-        }
 
         public frmFirstPage()
         {
@@ -57,25 +49,41 @@ namespace Project_2023
             string username = txtEnterUsername.Text;
             bool retry = true;
 
-            while (retry)
+            /*while (retry)
             {
                 userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                bool isEmpty = IsEmpty(userReadlists);
+                bool isEmpty = SqliteDataAccess.IsEmpty(userReadlists);
 
                 if (!isEmpty)
                 {
                     this.Hide();
+                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
+                    thirdform.ShowDialog();
                     retry = false;
                 }
                 else
                 {
                     retry = true;
                 }
+            }*/
+
+            while (retry)
+            {
+                userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                bool user_exists = SqliteDataAccess.userExists(username);
+
+                if (user_exists)
+                {
+                    this.Hide();
+                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
+                    thirdform.ShowDialog();
+                    retry = false;
+                }
+                else
+                {
+                    retry = false;
+                }
             }
-
-            frmReadlist thirdform = new frmReadlist(userReadlists, username);
-            thirdform.ShowDialog();
-
             this.Show();
         }
     }
