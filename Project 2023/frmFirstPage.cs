@@ -45,46 +45,28 @@ namespace Project_2023
 
         private void btnContinueFirstPage_Click(object sender, EventArgs e)
         {
-
             string username = txtEnterUsername.Text;
-            bool retry = true;
+            //bool retry = false;
 
-            /*while (retry)
+            int user_exists = SqliteDataAccess.userExists(username);
+            label2.Text = user_exists.ToString();
+            /*if (user_exists == true)
             {
-                userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                bool isEmpty = SqliteDataAccess.IsEmpty(userReadlists);
-
-                if (!isEmpty)
-                {
-                    this.Hide();
-                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
-                    thirdform.ShowDialog();
-                    retry = false;
-                }
-                else
-                {
-                    retry = true;
-                }
-            }*/
-
-            while (retry)
-            {
-                userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                bool user_exists = SqliteDataAccess.userExists(username);
-
-                if (user_exists)
-                {
-                    this.Hide();
-                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
-                    thirdform.ShowDialog();
-                    retry = false;
-                }
-                else
-                {
-                    retry = false;
-                }
+                label2.Text = "data is here";
+                txtEnterUsername.Text = "";
+                //userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                //frmReadlist thirdform = new frmReadlist(userReadlists, username);
+                //retry = false;
+                //thirdform.ShowDialog();
+                //this.Hide();
             }
-            this.Show();
+            else
+            {
+                txtEnterUsername.Text = "";
+                label2.Text = "false";
+                //retry = true;
+            }*/
+            //this.Show();
         }
     }
 }

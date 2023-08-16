@@ -116,13 +116,16 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                int output = cnn.Execute($"SELECT 1 FROM User WHERE Username = '{bob_user}'");
-
-                if (output != 1)
+                bool output = cnn.Query<bool>($"SELECT EXISTS (SELECT 1 FROM User WHERE Username = '{bob_user}')");
+                return output;
+                /*if (output != 1)
                 {
                     return false;
                 }
-                return true;
+                else
+                {
+                    return true;
+                }*/
             }
         }
 
