@@ -48,6 +48,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cmbMyReadlists = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnSelectReadlist = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxHaveRead
@@ -72,10 +75,10 @@
             // 
             // btnAddToReadlist
             // 
-            this.btnAddToReadlist.Location = new System.Drawing.Point(768, 288);
+            this.btnAddToReadlist.Location = new System.Drawing.Point(26, 403);
             this.btnAddToReadlist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddToReadlist.Name = "btnAddToReadlist";
-            this.btnAddToReadlist.Size = new System.Drawing.Size(120, 34);
+            this.btnAddToReadlist.Size = new System.Drawing.Size(171, 34);
             this.btnAddToReadlist.TabIndex = 2;
             this.btnAddToReadlist.Text = "Add To Readlist";
             this.btnAddToReadlist.UseVisualStyleBackColor = true;
@@ -94,7 +97,7 @@
             // 
             // txtEnterBookName
             // 
-            this.txtEnterBookName.Location = new System.Drawing.Point(767, 161);
+            this.txtEnterBookName.Location = new System.Drawing.Point(78, 303);
             this.txtEnterBookName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEnterBookName.Name = "txtEnterBookName";
             this.txtEnterBookName.Size = new System.Drawing.Size(100, 22);
@@ -103,16 +106,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(728, 161);
+            this.label1.Location = new System.Drawing.Point(23, 306);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 16);
+            this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Title";
+            this.label1.Text = "Title:";
             // 
             // cmbEnterGenre
             // 
             this.cmbEnterGenre.FormattingEnabled = true;
-            this.cmbEnterGenre.Location = new System.Drawing.Point(767, 232);
+            this.cmbEnterGenre.Location = new System.Drawing.Point(76, 366);
             this.cmbEnterGenre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEnterGenre.Name = "cmbEnterGenre";
             this.cmbEnterGenre.Size = new System.Drawing.Size(121, 24);
@@ -129,7 +132,7 @@
             // 
             // txtEnterAuthor
             // 
-            this.txtEnterAuthor.Location = new System.Drawing.Point(706, 198);
+            this.txtEnterAuthor.Location = new System.Drawing.Point(77, 334);
             this.txtEnterAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEnterAuthor.Name = "txtEnterAuthor";
             this.txtEnterAuthor.Size = new System.Drawing.Size(100, 22);
@@ -138,29 +141,29 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(640, 205);
+            this.label2.Location = new System.Drawing.Point(23, 337);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 16);
+            this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Author";
+            this.label2.Text = "Author:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(717, 240);
+            this.label3.Location = new System.Drawing.Point(23, 369);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.Size = new System.Drawing.Size(47, 16);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Genre";
+            this.label3.Text = "Genre:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(720, 263);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 16);
+            this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Read";
+            this.label4.Text = "Read:";
             // 
             // label5
             // 
@@ -175,8 +178,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 89);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(16, 89);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(189, 25);
             this.label7.TabIndex = 14;
@@ -184,14 +187,14 @@
             // 
             // txtNewReadlistName
             // 
-            this.txtNewReadlistName.Location = new System.Drawing.Point(26, 117);
+            this.txtNewReadlistName.Location = new System.Drawing.Point(21, 117);
             this.txtNewReadlistName.Name = "txtNewReadlistName";
-            this.txtNewReadlistName.Size = new System.Drawing.Size(184, 22);
+            this.txtNewReadlistName.Size = new System.Drawing.Size(227, 22);
             this.txtNewReadlistName.TabIndex = 15;
             // 
             // btnCreateNewReadlist
             // 
-            this.btnCreateNewReadlist.Location = new System.Drawing.Point(26, 145);
+            this.btnCreateNewReadlist.Location = new System.Drawing.Point(21, 145);
             this.btnCreateNewReadlist.Name = "btnCreateNewReadlist";
             this.btnCreateNewReadlist.Size = new System.Drawing.Size(108, 32);
             this.btnCreateNewReadlist.TabIndex = 16;
@@ -210,8 +213,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(26, 205);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(305, 89);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 25);
             this.label6.TabIndex = 18;
@@ -220,9 +223,9 @@
             // cmbMyReadlists
             // 
             this.cmbMyReadlists.FormattingEnabled = true;
-            this.cmbMyReadlists.Location = new System.Drawing.Point(31, 240);
+            this.cmbMyReadlists.Location = new System.Drawing.Point(307, 117);
             this.cmbMyReadlists.Name = "cmbMyReadlists";
-            this.cmbMyReadlists.Size = new System.Drawing.Size(121, 24);
+            this.cmbMyReadlists.Size = new System.Drawing.Size(151, 24);
             this.cmbMyReadlists.TabIndex = 19;
             // 
             // btnRefresh
@@ -235,11 +238,44 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnSelectReadlist
+            // 
+            this.btnSelectReadlist.Location = new System.Drawing.Point(307, 147);
+            this.btnSelectReadlist.Name = "btnSelectReadlist";
+            this.btnSelectReadlist.Size = new System.Drawing.Size(103, 31);
+            this.btnSelectReadlist.TabIndex = 22;
+            this.btnSelectReadlist.Text = "Select ";
+            this.btnSelectReadlist.UseVisualStyleBackColor = true;
+            this.btnSelectReadlist.Click += new System.EventHandler(this.btnSelectReadlist_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(21, 240);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(108, 25);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Add Books";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(302, 240);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(115, 25);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "View Books";
+            // 
             // frmReadlist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 565);
+            this.ClientSize = new System.Drawing.Size(934, 565);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnSelectReadlist);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.cmbMyReadlists);
             this.Controls.Add(this.label6);
@@ -294,5 +330,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbMyReadlists;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnSelectReadlist;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

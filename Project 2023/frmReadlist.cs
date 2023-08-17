@@ -140,5 +140,15 @@ namespace Project_2023
         {
 
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSelectReadlist_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

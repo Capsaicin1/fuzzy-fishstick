@@ -91,7 +91,8 @@ namespace Project_2023
         }
 
 
-        // Selects all the readlists associated with the username that is entered.
+        /* Selects all the readlists associated with the username that is entered. Takes one parameter (username) and
+           returns the output to a list.*/
         public static List<string> retriveUserLogin(string bob_user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -111,21 +112,15 @@ namespace Project_2023
             return !list.Any();
         }
 
-        // Checks if a user exists by executing a query that, if the record exists, it will return 1. Takes one parameter (username) and returns 'true' or 'false'.
-        public static bool userExists(string bob_user)
+        /* Checks if a user exists by executing a query that, if the record exists, it will return 1.
+           Takes one parameter (username) and returns either 1 or 0 to a list. (My SELECT statements only work when I 
+            return to a list) */
+        public static List<int> userExists(string bob_user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                bool output = cnn.Query<bool>($"SELECT EXISTS (SELECT 1 FROM User WHERE Username = '{bob_user}')");
-                return output;
-                /*if (output != 1)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }*/
+                var output = cnn.Query<int>($"SELECT 1 FROM User WHERE Username = '{bob_user}'");
+                return output.ToList();
             }
         }
 

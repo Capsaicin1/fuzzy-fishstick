@@ -23,13 +23,20 @@ namespace Project_2023
      */
     public partial class frmFirstPage : Form
     {
+        //Lists
         List<string> userReadlists = new List<string>();
+        List<int> userExistslist = new List<int>();
 
+        //Variables
+        int userExistsValue;
+        string username = "";
+        
         public frmFirstPage()
         {
             InitializeComponent();
         }
 
+        // Closes the current form and opens the CreateProfile form.
         private void btnCreateProfile_Click(object sender, EventArgs e)
         {
             //Hides frmFirstPage
@@ -43,30 +50,38 @@ namespace Project_2023
             this.Show();
         }
 
+        /* Identifies if the userexists by calling the 'userExists' function. If the user exists 
+          then closes the current form, send relevant data to the next form and opens the next form. If the user doesn't exist
+          then gives the user an error and denies them access.*/
         private void btnContinueFirstPage_Click(object sender, EventArgs e)
         {
-            string username = txtEnterUsername.Text;
-            //bool retry = false;
+            username = txtEnterUsername.Text;
+            bool retry = false;
 
-            int user_exists = SqliteDataAccess.userExists(username);
-            label2.Text = user_exists.ToString();
-            /*if (user_exists == true)
+            userExistslist = SqliteDataAccess.userExists(username);
+
+            for (int i = 0; i < userExistslist.Count; i++)
             {
-                label2.Text = "data is here";
+                userExistsValue = userExistslist[i];
+            }
+
+            if (userExistsValue == 1)
+            {
                 txtEnterUsername.Text = "";
-                //userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                //frmReadlist thirdform = new frmReadlist(userReadlists, username);
-                //retry = false;
-                //thirdform.ShowDialog();
-                //this.Hide();
+                errorLabelNoUser.Text = "";
+                userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                frmReadlist thirdform = new frmReadlist(userReadlists, username);
+                retry = false;
+                thirdform.ShowDialog();
+                this.Hide();
             }
             else
             {
                 txtEnterUsername.Text = "";
-                label2.Text = "false";
-                //retry = true;
-            }*/
-            //this.Show();
+                errorLabelNoUser.Text = "Username doesn't exist. Create a new account?";
+                retry = true;
+            }
+            this.Show();
         }
     }
 }
