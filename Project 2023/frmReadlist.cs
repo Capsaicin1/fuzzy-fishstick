@@ -30,10 +30,12 @@ namespace Project_2023
         //Lists
         List<string> userReadlists = new List<string>();
         List<int> userIDList = new List<int>();
+        List<int> readlistIDList = new List<int>();
         List<Book> Readlist = new List<Book>();
 
         //Variables
         int userID = 0;
+        int readlistID = 0;
         string username = "";
 
         // Creating a list where my data will load into.
@@ -68,6 +70,17 @@ namespace Project_2023
                 cmbMyReadlists.Items.Add(userReadlists[i]);
             }
 
+            //For Loop for populating the ReadListForRemove combobox with all the user's readlists.
+            for (int i = 0; i < userReadlists.Count; i++)
+            {
+                cmbReadlistsForRemove.Items.Add(userReadlists[i]);
+            }
+
+            //For Loop for populating the AddToReadlist combobox with all the user's readlists.
+            for (int i = 0; i < userReadlists.Count; i++)
+            {
+                cmbAddToReadlist.Items.Add(userReadlists[i]);
+            }
         }
 
 
@@ -113,27 +126,37 @@ namespace Project_2023
             loadReadlist();
         }
 
-        // When btn clicked it will retrieve the userID and use that to create a new readlist and insert it into the database.
+        /* When btn clicked it will retrieve the userID and use that to create a new readlist and insert it into the database.
+          It then retrieves the readlist Id from the newly created readlist. Inserts the userID and readlistID into a joining table.
+          This is necessary for the query that retrieves all the readlists to work.*/
         private void btnCreateNewReadlist_Click(object sender, EventArgs e)
         {
-            //Variables
             string errorLabel = null;
             string readlistName = txtNewReadlistName.Text;
 
-            // Retrieves userID and stores it into a list.
             userIDList = SqliteDataAccess.getUserID(username);
-
-            //Inserts the userID stored in the userID list into a variable.
             for (int i = 0; i < userIDList.Count; i++)
             {
-                userID = userIDList[i];
+                userID = userIDList[i];           
             }
-
-            /*Creates a new readlist and inserts it into the database. If an error occures, it will send the error message and
-              store it in a variable so it can be displayed.*/
             errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
-            txtReadlistErrorLabel.Text = errorLabel;
-            txtNewReadlistName.Text = "";
+            
+            if (errorLabel == null)
+            {
+                readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
+                for (int i = 0; i < readlistIDList.Count; i++)
+                {
+                    readlistID = readlistIDList[i];
+                }
+                SqliteDataAccess.insertJoiningTableRecord(readlistID, userID);
+                txtReadlistErrorLabel.Text = "";
+                txtNewReadlistName.Text = "";
+            }
+            else
+            {
+                txtReadlistErrorLabel.Text = errorLabel;
+                txtNewReadlistName.Text = "";
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -141,10 +164,6 @@ namespace Project_2023
 
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSelectReadlist_Click(object sender, EventArgs e)
         {

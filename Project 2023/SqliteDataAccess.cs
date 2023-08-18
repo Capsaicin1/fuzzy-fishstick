@@ -70,6 +70,15 @@ namespace Project_2023
                 return output.ToList();
             }
         }
+
+        public static List<int> getReadlistID(string bob_readlistName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>($"SELECT readlist_ID FROM Readlist WHERE readlist_Name = '{bob_readlistName}'");
+                return output.ToList();
+            }
+        }
         public static string createReadlist(string bob_readlistName, int bob_userID)
         {   
             while (true)
@@ -80,13 +89,20 @@ namespace Project_2023
                     {
                         cnn.Execute($"INSERT INTO Readlist (readlist_Name, userID) VALUES ('{bob_readlistName}', '{bob_userID}')");
                     }
-
                     return null;
                 }
                 catch 
                 {
                     return "Readlist name has to be unique. Try another name.";
                 }
+            }
+        }
+
+        public static void insertJoiningTableRecord(int bob_readlistID, int bob_userID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"INSERT INTO ReadList_Books (readlist_ID, userID) VALUES ('{bob_readlistID}', '{bob_userID}')");
             }
         }
 
