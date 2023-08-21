@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_2023
@@ -24,22 +18,26 @@ namespace Project_2023
     public partial class frmReadlist : Form
     {
         //Arrays
-        string[] bookGenre = { "Fiction", "Non-Fiction" };
+        string[] bookGenre = { "Fiction", "Non-Fiction", "Fantasy", "Urban-Fantasy", "Crime", "Romance", "Action", "Biography" };
         string[] hasRead = { "1", "0" };
 
         //Lists
         List<string> userReadlists = new List<string>();
+        List<int> bookExistsList = new List<int>();
         List<int> userIDList = new List<int>();
         List<int> readlistIDList = new List<int>();
-        List<Book> Readlist = new List<Book>();
+        List<int> IDlist = new List<int>();
+        List<Book> books = new List<Book>();
+        List<string> bookInfo = new List<string>();
 
         //Variables
         int userID = 0;
         int readlistID = 0;
+        int bookID = 0;
         string username = "";
 
         // Creating a list where my data will load into.
-        
+
         public frmReadlist(List<string> bob_UserReadlists, string bob_Username)
         {
             //Inserts the data sent over from the frmFirstPage form and inserts it into variables.
@@ -84,46 +82,30 @@ namespace Project_2023
         }
 
 
+        /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
         // This function loads the data into the list and wires up the list.
         private void loadReadlist()
         {
-            Readlist = SqliteDataAccess.LoadBooks();
-            wireUpReadlist();
+
         }
 
-        /* This function sets the data source for the HaveRead listbox to the Readlist list
-         and the displaymember as the Title */
-        private void wireUpReadlist()
-        {
-            lbxHaveRead.DataSource = Readlist;
-            lbxHaveRead.DataSource = null;
-            lbxHaveRead.DisplayMember = "BookTitle";
-        }
 
-        private void btnAddToReadlist_Click(object sender, EventArgs e)
-        {
-            Book b = new Book
-            {
-                Title = txtEnterBookName.Text,
-                Author = txtEnterAuthor.Text,
-                Genre = cmbEnterGenre.Text,
-                hasRead = cmbEnterHasRead.Text
-            };
-
-            Convert.ToInt32(cmbEnterHasRead.SelectedItem);
-
-            SqliteDataAccess.saveBook(b);
-
-            txtEnterBookName.Text = "";
-            txtEnterAuthor.Text = "";
-            cmbEnterGenre.Text = "";
-            cmbEnterHasRead.Text = "";
-        }
 
         // The refresh button calls the loadReadList again to load any new entries into the db into the list.
         private void btnRefreshReadlist_Click(object sender, EventArgs e)
         {
             loadReadlist();
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+        /* This function sets the data source for the listbox to the books list
+           and the displaymember as the Title */
+        private void wireUpBookslist()
+        {
+            lbxBooksFromReadlist.DataSource = books;
+            lbxBooksFromReadlist.DisplayMember = "Title";
         }
 
         /* When btn clicked it will retrieve the userID and use that to create a new readlist and insert it into the database.
@@ -135,12 +117,12 @@ namespace Project_2023
             string readlistName = txtNewReadlistName.Text;
 
             userIDList = SqliteDataAccess.getUserID(username);
-            for (int i = 0; i < userIDList.Count; i++)
+            for (int i = 0; i < IDlist.Count; i++)
             {
-                userID = userIDList[i];           
+                userID = IDlist[i];
             }
             errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
-            
+
             if (errorLabel == null)
             {
                 readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
@@ -151,12 +133,56 @@ namespace Project_2023
                 SqliteDataAccess.insertJoiningTableRecord(readlistID, userID);
                 txtReadlistErrorLabel.Text = "";
                 txtNewReadlistName.Text = "";
+                IDlist.Clear();
             }
             else
             {
                 txtReadlistErrorLabel.Text = errorLabel;
                 txtNewReadlistName.Text = "";
+                IDlist.Clear();
             }
+        }
+
+        private void btnAddBookToReadlist_Click(object sender, EventArgs e)
+        {
+            string error = null;
+            string readlistName = cmbAddToReadlist.SelectedItem.ToString();
+
+            readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
+            for (int i = 0; i < readlistIDList.Count; i++)
+            {
+                readlistID = readlistIDList[i];
+            }
+
+            Book b = new Book
+            {
+                Title = txtEnterBookName.Text,
+                Author = txtEnterAuthor.Text,
+                Genre = cmbEnterGenre.Text,
+                readlistID = readlistID
+            };
+            error = SqliteDataAccess.saveBook(b);
+
+            if (error == null)
+            {
+                IDlist = SqliteDataAccess.getBookID(b.Title, b.Author, b.Genre, readlistID);
+                for (int i = 0; i < IDlist.Count; i++)
+                {
+                    bookID = IDlist[i];
+                }
+                SqliteDataAccess.insertBook_JT_Record(readlistID, bookID);
+                IDlist.Clear();
+            }
+            else
+            {
+                lblCreateBookError.Text = error;
+                IDlist.Clear ();
+            }
+            txtEnterBookName.Text = "";
+            txtEnterAuthor.Text = "";
+            cmbEnterGenre.Text = "";
+            cmbEnterHasRead.Text = "";
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -164,8 +190,24 @@ namespace Project_2023
 
         }
 
-
+        /* Uses the selected readlist and retrieves all the books in that readlist. */
         private void btnSelectReadlist_Click(object sender, EventArgs e)
+        {
+            string readlistName = cmbMyReadlists.SelectedItem.ToString();
+            books = SqliteDataAccess.retrieveReadlistBooks(readlistName);
+            wireUpBookslist();
+        }
+
+        private void btnSeeBookInfo_Click(object sender, EventArgs e)
+        {
+            Book b = new Book
+            {
+                Title = ""
+            };
+            IDlist = null;
+        }
+
+        private void btnRemoveFromReadlist_Click(object sender, EventArgs e)
         {
 
         }

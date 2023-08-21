@@ -18,22 +18,34 @@ namespace Project_2023
         /*Function to load the books in the books table from my database int the readlistbox.
          It does this by loading up a new connection to the database and running a query */
          public static List<Book> LoadBooks()
-        {
+         {
             using (IDbConnection cnn  = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Book>("select Title from Books", new DynamicParameters());
                 return output.ToList();
             }
-        }
+         }
 
         /*This function inserts the book data the user enters into the books table in my database
          by executing sql.*/
-        public static void saveBook(Book bob_book)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+        public static string saveBook(Book bob_book)
+        {           
+            while (true)
             {
-                cnn.Execute("insert into Books (Title, Author, Genre, hasRead) values (@Title, @Author, @Genre, @hasRead)", bob_book);
+                try
+                {
+                    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                    {
+                        cnn.Execute("insert into Books (Title, Author, Genre, readlist_ID) values (@Title, @Author, @Genre, @readlistID)", bob_book);
+                    }
+                    return null;
+                }
+                catch
+                {
+                    return "Empty field are not allowed.";
+                }
             }
+            
         }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -79,6 +91,15 @@ namespace Project_2023
                 return output.ToList();
             }
         }
+
+        public static List<int> getBookID(string bob_bookName, string bob_bookAuthor, string bob_bookGenre, int bob_readlistID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>($"SELECT bookID FROM Books WHERE title = '{bob_bookName}' AND Author = '{bob_bookAuthor}' AND Genre = '{bob_bookGenre}' AND readlist_ID = '{bob_readlistID}'");
+                return output.ToList();
+            }
+        }
         public static string createReadlist(string bob_readlistName, int bob_userID)
         {   
             while (true)
@@ -98,6 +119,11 @@ namespace Project_2023
             }
         }
 
+        public static void removeBook()
+        {
+
+        }
+
         public static void insertJoiningTableRecord(int bob_readlistID, int bob_userID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -106,6 +132,13 @@ namespace Project_2023
             }
         }
 
+        public static void insertBook_JT_Record(int bob_readlistID, int bob_bookID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"INSERT INTO book_readlist (readlist_ID, bookID) VALUES ('{bob_readlistID}', '{bob_bookID}')");
+            }
+        }
 
         /* Selects all the readlists associated with the username that is entered. Takes one parameter (username) and
            returns the output to a list.*/
@@ -113,7 +146,25 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE userID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
+                var output = cnn.Query<string>($"SELECT readlist_name FROM Readlist WHERE readlist_ID IN (SELECT readlist_ID FROM Readlist_Books WHERE userID = (SELECT userID FROM User WHERE Username = '{bob_user}'))");
+                return output.ToList();
+            }
+        }
+
+        public static List<Book> retrieveReadlistBooks(string bob_readlistName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Book>($"SELECT Title FROM Books WHERE readlist_ID IN (SELECT readlist_ID FROM book_readlist WHERE readlist_ID = (SELECT readlist_ID FROM Readlist WHERE readlist_Name = '{bob_readlistName}'))");
+                return output.ToList();
+            }
+        }
+
+        public static List<Book> retrieveBookInfo(int bob_bookID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Book>($"SELECT Title, Author, Genre FROM Books WHERE bookID = '{bob_bookID}'");
                 return output.ToList();
             }
         }
@@ -136,6 +187,15 @@ namespace Project_2023
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<int>($"SELECT 1 FROM User WHERE Username = '{bob_user}'");
+                return output.ToList();
+            }
+        }
+
+        public static List<int> bookExists(string bob_bookName, int bob_readlistID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>($"SELECT 1 FROM Books WHERE Username = '{bob_user}'");
                 return output.ToList();
             }
         }
