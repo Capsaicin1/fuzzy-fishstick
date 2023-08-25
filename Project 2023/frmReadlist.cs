@@ -26,6 +26,7 @@ namespace Project_2023
         List<int> bookExistsList = new List<int>();
         List<int> userIDList = new List<int>();
         List<int> readlistIDList = new List<int>();
+        List<int> bookIDlist = new List<int>();
         List<int> IDlist = new List<int>();
         List<Book> books = new List<Book>();
         List<string> bookInfo = new List<string>();
@@ -117,9 +118,9 @@ namespace Project_2023
             string readlistName = txtNewReadlistName.Text;
 
             userIDList = SqliteDataAccess.getUserID(username);
-            for (int i = 0; i < IDlist.Count; i++)
+            for (int i = 0; i < userIDList.Count; i++)
             {
-                userID = IDlist[i];
+                userID = userIDList[i];
             }
             errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
 
@@ -133,13 +134,15 @@ namespace Project_2023
                 SqliteDataAccess.insertJoiningTableRecord(readlistID, userID);
                 txtReadlistErrorLabel.Text = "";
                 txtNewReadlistName.Text = "";
-                IDlist.Clear();
+                userIDList.Clear();
+                readlistIDList.Clear();
             }
             else
             {
                 txtReadlistErrorLabel.Text = errorLabel;
                 txtNewReadlistName.Text = "";
-                IDlist.Clear();
+                userIDList.Clear();
+                readlistIDList.Clear();
             }
         }
 
@@ -165,18 +168,20 @@ namespace Project_2023
 
             if (error == null)
             {
-                IDlist = SqliteDataAccess.getBookID(b.Title, b.Author, b.Genre, readlistID);
-                for (int i = 0; i < IDlist.Count; i++)
+                bookIDlist = SqliteDataAccess.getBookID(b.Title, b.Author, b.Genre, readlistID);
+                for (int i = 0; i < bookIDlist.Count; i++)
                 {
-                    bookID = IDlist[i];
+                    bookID = bookIDlist[i];
                 }
                 SqliteDataAccess.insertBook_JT_Record(readlistID, bookID);
-                IDlist.Clear();
+                bookIDlist.Clear();
+                readlistIDList.Clear();
             }
             else
             {
                 lblCreateBookError.Text = error;
-                IDlist.Clear ();
+                bookIDlist.Clear ();
+                readlistIDList.Clear();
             }
             txtEnterBookName.Text = "";
             txtEnterAuthor.Text = "";

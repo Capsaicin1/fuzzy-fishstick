@@ -191,11 +191,11 @@ namespace Project_2023
             }
         }
 
-        public static List<int> bookExists(string bob_bookName, int bob_readlistID)
+        public static List<int> bookExists(int bob_bookID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<int>($"SELECT 1 FROM Books WHERE Username = '{bob_user}'");
+                var output = cnn.Query<int>($"SELECT 1 FROM Books WHERE bookID = '{bob_bookID}' AND Title = ''");
                 return output.ToList();
             }
         }
