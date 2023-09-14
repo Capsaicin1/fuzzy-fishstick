@@ -92,11 +92,22 @@ namespace Project_2023
             }
         }
 
+        
+
         public static List<int> getBookID(string bob_bookName, string bob_bookAuthor, string bob_bookGenre, int bob_readlistID)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<int>($"SELECT bookID FROM Books WHERE title = '{bob_bookName}' AND Author = '{bob_bookAuthor}' AND Genre = '{bob_bookGenre}' AND readlist_ID = '{bob_readlistID}'");
+                return output.ToList();
+            }
+        }
+
+        public static List<int> getBook_ReadlistID(int bob_bookID, int bob_readlistID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<int>($"SELECT book_readlist_ID FROM book_readlist WHERE readlist_ID = '{bob_readlistID}' AND bookID = '{bob_bookID}'");
                 return output.ToList();
             }
         }
@@ -119,10 +130,6 @@ namespace Project_2023
             }
         }
 
-        public static void removeBook()
-        {
-
-        }
 
         public static void insertJoiningTableRecord(int bob_readlistID, int bob_userID)
         {
@@ -137,6 +144,22 @@ namespace Project_2023
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute($"INSERT INTO book_readlist (readlist_ID, bookID) VALUES ('{bob_readlistID}', '{bob_bookID}')");
+            }
+        }
+
+        public static void removeBook_ReadlistRecord(int bob_BookreadlistID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"DELETE FROM book_readlist WHERE book_readlist_ID = '{bob_BookreadlistID}'");
+            }
+        }
+            
+        public static void removeBook(int bob_bookID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"DELETE FROM Books WHERE bookID = '{bob_bookID}'");
             }
         }
 
@@ -155,7 +178,16 @@ namespace Project_2023
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Book>($"SELECT Title FROM Books WHERE readlist_ID IN (SELECT readlist_ID FROM book_readlist WHERE readlist_ID = (SELECT readlist_ID FROM Readlist WHERE readlist_Name = '{bob_readlistName}'))");
+                var output = cnn.Query<Book>($"SELECT Title, Author, Genre FROM Books WHERE readlist_ID IN (SELECT readlist_ID FROM book_readlist WHERE readlist_ID = (SELECT readlist_ID FROM Readlist WHERE readlist_Name = '{bob_readlistName}'))");
+                return output.ToList();
+            }
+        }
+
+        public static List<Book> retrieveBooksForDelete(string bob_readlistName)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Book>($"SELECT Title, Author, Genre FROM Books WHERE readlist_ID IN (SELECT readlist_ID FROM book_readlist WHERE readlist_ID = (SELECT readlist_ID FROM Readlist WHERE readlist_Name = '{bob_readlistName}'))");
                 return output.ToList();
             }
         }

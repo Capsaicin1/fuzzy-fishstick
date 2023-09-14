@@ -19,7 +19,6 @@ namespace Project_2023
     {
         //Arrays
         string[] bookGenre = { "Fiction", "Non-Fiction", "Fantasy", "Urban-Fantasy", "Crime", "Romance", "Action", "Biography" };
-        string[] hasRead = { "1", "0" };
 
         //Lists
         List<string> userReadlists = new List<string>();
@@ -27,15 +26,17 @@ namespace Project_2023
         List<int> userIDList = new List<int>();
         List<int> readlistIDList = new List<int>();
         List<int> bookIDlist = new List<int>();
-        List<int> IDlist = new List<int>();
+        List<int> book_readlistIDlist = new List<int>();
         List<Book> books = new List<Book>();
-        List<string> bookInfo = new List<string>();
 
         //Variables
         int userID = 0;
         int readlistID = 0;
         int bookID = 0;
+        int book_readlistID = 0;
         string username = "";
+        const string inputError = "Oops! Make sure there are no empty fields.";
+        const string unknownError = "Oops! We weren't able to excecute that action for unknown reasons. \nPlease try again.";
 
         // Creating a list where my data will load into.
 
@@ -46,7 +47,6 @@ namespace Project_2023
             userReadlists = bob_UserReadlists;
 
             InitializeComponent();
-            loadReadlist();
         }
 
         private void frmReadlist_Load(object sender, EventArgs e)
@@ -55,12 +55,6 @@ namespace Project_2023
             for (int i = 0; i < bookGenre.Length; i++)
             {
                 cmbEnterGenre.Items.Add(bookGenre[i]);
-            }
-
-            //For loop loops through the hasRead array and populates the EnterHasRead combobox with those values.
-            for (int i = 0; i < hasRead.Length; i++)
-            {
-                cmbEnterHasRead.Items.Add(hasRead[i]);
             }
 
             //For Loop for populating the MyReadlists combobox with all the user's readlists.
@@ -85,18 +79,11 @@ namespace Project_2023
 
         /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-        // This function loads the data into the list and wires up the list.
-        private void loadReadlist()
-        {
-
-        }
-
-
 
         // The refresh button calls the loadReadList again to load any new entries into the db into the list.
         private void btnRefreshReadlist_Click(object sender, EventArgs e)
         {
-            loadReadlist();
+            
         }
 
         /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -109,84 +96,123 @@ namespace Project_2023
             lbxBooksFromReadlist.DisplayMember = "Title";
         }
 
+        private void wireUpBooksForDeletion()
+        {
+            cmbBooksInReadlist.DataSource = books;
+            cmbBooksInReadlist.DisplayMember="Title";
+        }
+
         /* When btn clicked it will retrieve the userID and use that to create a new readlist and insert it into the database.
           It then retrieves the readlist Id from the newly created readlist. Inserts the userID and readlistID into a joining table.
           This is necessary for the query that retrieves all the readlists to work.*/
         private void btnCreateNewReadlist_Click(object sender, EventArgs e)
         {
             string errorLabel = null;
-            string readlistName = txtNewReadlistName.Text;
+            var readlistName = txtNewReadlistName.Text;
 
-            userIDList = SqliteDataAccess.getUserID(username);
-            for (int i = 0; i < userIDList.Count; i++)
+            if (!string.IsNullOrEmpty(readlistName))
             {
-                userID = userIDList[i];
-            }
-            errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
-
-            if (errorLabel == null)
-            {
-                readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
-                for (int i = 0; i < readlistIDList.Count; i++)
+                userIDList = SqliteDataAccess.getUserID(username);
+                for (int i = 0; i < userIDList.Count; i++)
                 {
-                    readlistID = readlistIDList[i];
+                    userID = userIDList[i];
                 }
-                SqliteDataAccess.insertJoiningTableRecord(readlistID, userID);
-                txtReadlistErrorLabel.Text = "";
-                txtNewReadlistName.Text = "";
-                userIDList.Clear();
-                readlistIDList.Clear();
+                errorLabel = SqliteDataAccess.createReadlist(readlistName, userID);
+
+                if (errorLabel == null)
+                {
+                    readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
+                    for (int i = 0; i < readlistIDList.Count; i++)
+                    {
+                        readlistID = readlistIDList[i];
+                    }
+                    SqliteDataAccess.insertJoiningTableRecord(readlistID, userID);
+                    MessageBox.Show("Success!");
+                    
+                    //Clearing
+                    txtReadlistErrorLabel.Text = "";
+                    txtNewReadlistName.Text = "";
+                    userIDList.Clear();
+                    readlistIDList.Clear();
+                    readlistID = 0;
+                    userID = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Readlist name has to be unique. Try another name.");
+
+                    //Clearing
+                    txtNewReadlistName.Text = "";
+                    userIDList.Clear();
+                    readlistIDList.Clear();
+                    readlistID = 0;
+                    userID = 0;
+                }
             }
             else
             {
-                txtReadlistErrorLabel.Text = errorLabel;
-                txtNewReadlistName.Text = "";
-                userIDList.Clear();
-                readlistIDList.Clear();
+                MessageBox.Show(inputError);
             }
+
+            
         }
 
         private void btnAddBookToReadlist_Click(object sender, EventArgs e)
         {
             string error = null;
-            string readlistName = cmbAddToReadlist.SelectedItem.ToString();
+            var readlistName = cmbAddToReadlist.SelectedItem;
+            var bookTitle = txtEnterBookName.Text;
+            var bookAuthor = txtEnterAuthor.Text;
+            var bookGenre = cmbEnterGenre.SelectedItem;
 
-            readlistIDList = SqliteDataAccess.getReadlistID(readlistName);
-            for (int i = 0; i < readlistIDList.Count; i++)
+            if (readlistName != null && 
+                !string.IsNullOrEmpty(bookTitle) && 
+                !string.IsNullOrEmpty(bookAuthor) && 
+                bookGenre != null)
             {
-                readlistID = readlistIDList[i];
-            }
+                string updatedReadlistName = Convert.ToString(readlistName);
 
-            Book b = new Book
-            {
-                Title = txtEnterBookName.Text,
-                Author = txtEnterAuthor.Text,
-                Genre = cmbEnterGenre.Text,
-                readlistID = readlistID
-            };
-            error = SqliteDataAccess.saveBook(b);
-
-            if (error == null)
-            {
-                bookIDlist = SqliteDataAccess.getBookID(b.Title, b.Author, b.Genre, readlistID);
-                for (int i = 0; i < bookIDlist.Count; i++)
+                readlistIDList = SqliteDataAccess.getReadlistID(updatedReadlistName);
+                for (int i = 0; i < readlistIDList.Count; i++)
                 {
-                    bookID = bookIDlist[i];
+                    readlistID = readlistIDList[i];
                 }
-                SqliteDataAccess.insertBook_JT_Record(readlistID, bookID);
-                bookIDlist.Clear();
-                readlistIDList.Clear();
+
+                Book b = new Book
+                {
+                    Title = txtEnterBookName.Text,
+                    Author = txtEnterAuthor.Text,
+                    Genre = cmbEnterGenre.Text,
+                    readlistID = readlistID
+                };
+                error = SqliteDataAccess.saveBook(b);
+
+                if (error == null)
+                {
+                    bookIDlist = SqliteDataAccess.getBookID(b.Title, b.Author, b.Genre, readlistID);
+                    for (int i = 0; i < bookIDlist.Count; i++)
+                    {
+                        bookID = bookIDlist[i];
+                    }
+                    SqliteDataAccess.insertBook_JT_Record(readlistID, bookID);
+                    bookIDlist.Clear();
+                    readlistIDList.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(inputError);
+                    bookIDlist.Clear();
+                    readlistIDList.Clear();
+                }
+                txtEnterBookName.Text = "";
+                txtEnterAuthor.Text = "";
+                cmbEnterGenre.Text = "";
+                cmbAddToReadlist.SelectedItem = null;
             }
             else
             {
-                lblCreateBookError.Text = error;
-                bookIDlist.Clear ();
-                readlistIDList.Clear();
+                MessageBox.Show(inputError);
             }
-            txtEnterBookName.Text = "";
-            txtEnterAuthor.Text = "";
-            cmbEnterGenre.Text = "";
-            cmbEnterHasRead.Text = "";
 
         }
 
@@ -199,22 +225,121 @@ namespace Project_2023
         private void btnSelectReadlist_Click(object sender, EventArgs e)
         {
             string readlistName = cmbMyReadlists.SelectedItem.ToString();
-            books = SqliteDataAccess.retrieveReadlistBooks(readlistName);
-            wireUpBookslist();
+
+            if(!string.IsNullOrEmpty(readlistName))
+            {
+                books = SqliteDataAccess.retrieveReadlistBooks(readlistName);
+                wireUpBookslist();
+            }
+            else
+            {
+                MessageBox.Show(inputError);
+            }
         }
 
         private void btnSeeBookInfo_Click(object sender, EventArgs e)
         {
-            Book b = new Book
+            Book selectedBook = (Book)lbxBooksFromReadlist.SelectedItem;
+
+            if (selectedBook != null)
             {
-                Title = ""
-            };
-            IDlist = null;
+                lblBookTitleInfo.Text = selectedBook.Title;
+                lblBookAuthorInfo.Text = selectedBook.Author;
+                lblBookGenreInfo.Text = selectedBook.Genre;
+            }
+            else
+            {
+                MessageBox.Show(inputError);
+            }
+            
+        }
+
+        private void btnSelectReadlistForBookDelete_Click(object sender, EventArgs e)
+        {
+            var readlistName = cmbReadlistsForRemove.SelectedItem;
+
+            if (readlistName != null)
+            {
+                string updatedReadlistName = Convert.ToString(readlistName);
+                books = SqliteDataAccess.retrieveBooksForDelete(updatedReadlistName);
+                wireUpBooksForDeletion();
+            }
+            else
+            {
+                MessageBox.Show(inputError);
+            }
         }
 
         private void btnRemoveFromReadlist_Click(object sender, EventArgs e)
         {
+            //Remove joining table record first then remove book record.
+            Book selectedBook = (Book)cmbBooksInReadlist.SelectedItem;
 
+            //Book selectedBook = (Book)lbxBooksForDelete.SelectedItem;
+            var readlistName = cmbReadlistsForRemove.SelectedItem;
+
+            if (readlistName != null && selectedBook != null)
+            {
+                string updatedReadlistName = Convert.ToString(readlistName);
+
+                readlistIDList = SqliteDataAccess.getReadlistID(updatedReadlistName);
+                for (int i = 0; i < readlistIDList.Count; i++)
+                {
+                    readlistID = readlistIDList[i];
+                }
+
+
+                bookIDlist = SqliteDataAccess.getBookID(selectedBook.Title, selectedBook.Author, selectedBook.Genre, readlistID);
+                for (int i = 0; i < bookIDlist.Count; i++)
+                {
+                    bookID = bookIDlist[i];
+                }
+
+                book_readlistIDlist = SqliteDataAccess.getBook_ReadlistID(bookID, readlistID);
+                for (int i = 0; i < book_readlistIDlist.Count; i++)
+                {
+                    book_readlistID = book_readlistIDlist[i];
+                }
+
+                try
+                {
+                    SqliteDataAccess.removeBook_ReadlistRecord(book_readlistID);
+                    SqliteDataAccess.removeBook(bookID);
+                    MessageBox.Show("Success!");
+
+                    //Clearing
+                    readlistIDList.Clear();
+                    bookIDlist.Clear();
+                    book_readlistIDlist.Clear();
+                    cmbBooksInReadlist.SelectedItem = null;
+                }
+                catch
+                {
+                    MessageBox.Show(unknownError);
+
+                    //Clearing
+                    readlistIDList.Clear();
+                    bookIDlist.Clear();
+                    book_readlistIDlist.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show(inputError);
+            }
+        }
+
+        private void btnTutorial_Click(object sender, EventArgs e)
+        {
+            msg m = new msg();
+            m.Show();
+        }
+
+        private void comboboxFormat(object sender, ListControlConvertEventArgs e)
+        {
+            string Title = ((Book)e.ListItem).Title;
+            string Author = ((Book)e.ListItem).Author;
+            e.Value = Title + ", " + Author;
         }
     }
 }

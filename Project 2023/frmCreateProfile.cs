@@ -23,6 +23,10 @@ namespace Project_2023
     */
     public partial class frmCreateProfile : Form
     {
+        //Variables
+        const string inputError = "Oops! Make sure there are no empty fields.";
+        const string unknownError = "Oops! We weren't able to excecute that action for unknown reasons. \nPlease try again.";
+
         public frmCreateProfile()
         {
             InitializeComponent();
@@ -49,18 +53,29 @@ namespace Project_2023
                 LastName = txtLastName.Text,
             };
 
-            errorLabel = SqliteDataAccess.addUser(u);
-            lblUsernameError.Text = errorLabel;
-
-            txtCreateUsername.Text = "";
-            txtFirstName.Text = "";
-            txtLastName.Text = "";
-            
-            
-            if (errorLabel == null)
+            if (!string.IsNullOrEmpty(txtCreateUsername.Text) && 
+                !string.IsNullOrEmpty(txtFirstName.Text) && 
+                !string.IsNullOrEmpty(txtLastName.Text))
             {
-                this.Close();
+                errorLabel = SqliteDataAccess.addUser(u);
+                MessageBox.Show(errorLabel);
+
+                txtCreateUsername.Text = "";
+                txtFirstName.Text = "";
+                txtLastName.Text = "";
+
+
+                if (errorLabel == null)
+                {
+                    this.Close();
+                }
             }
+            else
+            {
+                MessageBox.Show(inputError);
+            }
+
+            
         }
 
     }

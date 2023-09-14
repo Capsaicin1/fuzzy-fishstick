@@ -30,7 +30,9 @@ namespace Project_2023
         //Variables
         int userExistsValue;
         string username = "";
-        
+        const string inputError = "Oops! Make sure there are no empty fields.";
+        const string unknownError = "Oops! We weren't able to excecute that action for unknown reasons. \nPlease try again.";
+
         public frmFirstPage()
         {
             InitializeComponent();
@@ -56,32 +58,43 @@ namespace Project_2023
         private void btnContinueFirstPage_Click(object sender, EventArgs e)
         {
             username = txtEnterUsername.Text;
-            bool retry = false;
 
-            userExistslist = SqliteDataAccess.userExists(username);
-
-            for (int i = 0; i < userExistslist.Count; i++)
+            if(!string.IsNullOrEmpty(username))
             {
-                userExistsValue = userExistslist[i];
-            }
+                userExistslist = SqliteDataAccess.userExists(username);
 
-            if (userExistsValue == 1)
-            {
-                txtEnterUsername.Text = "";
-                errorLabelNoUser.Text = "";
-                userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                frmReadlist thirdform = new frmReadlist(userReadlists, username);
-                retry = false;
-                thirdform.ShowDialog();
-                this.Hide();
+                for (int i = 0; i < userExistslist.Count; i++)
+                {
+                    userExistsValue = userExistslist[i];
+                }
+
+                if (userExistsValue == 1)
+                {
+                    txtEnterUsername.Text = "";
+                    errorLabelNoUser.Text = "";
+
+                    /*===============================================================================================*/
+
+                    userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
+
+                    /*===============================================================================================*/
+
+                    thirdform.ShowDialog();
+                    this.Hide();
+                    this.Show();
+                }
+                else
+                {
+                    txtEnterUsername.Text = "";
+                    MessageBox.Show("Username doesn't exist!");
+                }
             }
             else
             {
-                txtEnterUsername.Text = "";
-                errorLabelNoUser.Text = "Username doesn't exist. Create a new account?";
-                retry = true;
+                MessageBox.Show(inputError);
             }
-            this.Show();
+            
         }
     }
 }
