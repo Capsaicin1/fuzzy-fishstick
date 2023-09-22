@@ -52,11 +52,10 @@
             // lblHeading2
             // 
             this.lblHeading2.AutoSize = true;
-            this.lblHeading2.Font = new System.Drawing.Font("Bookman Old Style", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading2.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading2.Location = new System.Drawing.Point(1, 2);
-            this.lblHeading2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeading2.Name = "lblHeading2";
-            this.lblHeading2.Size = new System.Drawing.Size(190, 94);
+            this.lblHeading2.Size = new System.Drawing.Size(155, 98);
             this.lblHeading2.TabIndex = 1;
             this.lblHeading2.Text = "Readlist\r\n\r\n";
             // 
@@ -64,8 +63,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 54);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(5, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(147, 17);
             this.label1.TabIndex = 2;
@@ -73,68 +71,61 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(11, 123);
-            this.txtFirstName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFirstName.Location = new System.Drawing.Point(8, 100);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(132, 22);
+            this.txtFirstName.Size = new System.Drawing.Size(100, 20);
             this.txtFirstName.TabIndex = 3;
             this.toolTipEnterFirstName.SetToolTip(this.txtFirstName, "Enter your first name.");
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(188, 123);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLastName.Location = new System.Drawing.Point(141, 100);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(135, 22);
+            this.txtLastName.Size = new System.Drawing.Size(102, 20);
             this.txtLastName.TabIndex = 4;
             this.toolTipEnterYourLastName.SetToolTip(this.txtLastName, "Enter your last name.");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 100);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(8, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "First Name:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(188, 98);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(141, 80);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(75, 16);
+            this.label3.Size = new System.Drawing.Size(70, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Last Name:";
             // 
             // txtCreateUsername
             // 
-            this.txtCreateUsername.Location = new System.Drawing.Point(11, 203);
-            this.txtCreateUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCreateUsername.Location = new System.Drawing.Point(8, 165);
             this.txtCreateUsername.Name = "txtCreateUsername";
-            this.txtCreateUsername.Size = new System.Drawing.Size(312, 22);
+            this.txtCreateUsername.Size = new System.Drawing.Size(235, 20);
             this.txtCreateUsername.TabIndex = 7;
             this.toolTipEnterUsername.SetToolTip(this.txtCreateUsername, "Enter your username.");
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 180);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(8, 146);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 16);
+            this.label4.Size = new System.Drawing.Size(68, 15);
             this.label4.TabIndex = 8;
             this.label4.Text = "Username:";
             // 
             // btnBackToLogin
             // 
-            this.btnBackToLogin.Location = new System.Drawing.Point(11, 270);
-            this.btnBackToLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBackToLogin.Location = new System.Drawing.Point(8, 219);
             this.btnBackToLogin.Name = "btnBackToLogin";
-            this.btnBackToLogin.Size = new System.Drawing.Size(112, 42);
+            this.btnBackToLogin.Size = new System.Drawing.Size(84, 34);
             this.btnBackToLogin.TabIndex = 9;
             this.btnBackToLogin.Text = "Back";
             this.toolTipBackToLogin.SetToolTip(this.btnBackToLogin, "Go back to the login page.");
@@ -143,10 +134,9 @@
             // 
             // btnConfirmProfileDetails
             // 
-            this.btnConfirmProfileDetails.Location = new System.Drawing.Point(188, 270);
-            this.btnConfirmProfileDetails.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfirmProfileDetails.Location = new System.Drawing.Point(141, 219);
             this.btnConfirmProfileDetails.Name = "btnConfirmProfileDetails";
-            this.btnConfirmProfileDetails.Size = new System.Drawing.Size(112, 42);
+            this.btnConfirmProfileDetails.Size = new System.Drawing.Size(84, 34);
             this.btnConfirmProfileDetails.TabIndex = 10;
             this.btnConfirmProfileDetails.Text = "Confirm";
             this.toolTipConfirmDetails.SetToolTip(this.btnConfirmProfileDetails, "Confirm your details.");
@@ -166,30 +156,28 @@
             this.groupBox1.Controls.Add(this.txtFirstName);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblHeading2);
-            this.groupBox1.Location = new System.Drawing.Point(15, 9);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(11, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(335, 331);
+            this.groupBox1.Size = new System.Drawing.Size(251, 269);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
             // lblUsernameError
             // 
             this.lblUsernameError.AutoSize = true;
-            this.lblUsernameError.Location = new System.Drawing.Point(98, 179);
+            this.lblUsernameError.Location = new System.Drawing.Point(74, 145);
+            this.lblUsernameError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsernameError.Name = "lblUsernameError";
-            this.lblUsernameError.Size = new System.Drawing.Size(0, 16);
+            this.lblUsernameError.Size = new System.Drawing.Size(0, 15);
             this.lblUsernameError.TabIndex = 11;
             // 
             // frmCreateProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 353);
+            this.ClientSize = new System.Drawing.Size(270, 287);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmCreateProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -15,11 +15,11 @@ namespace Project_2023
         public string Genre { get; set; }
         public int readlistID { get; set; }
 
-        public string BookTitle
+        public string fullTitle
         {
             get 
             {
-                return $"{Title}";
+                return $"{Title}, {Author}";
             }
         }
 

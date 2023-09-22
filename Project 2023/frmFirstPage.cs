@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_2023
@@ -59,42 +53,38 @@ namespace Project_2023
         {
             username = txtEnterUsername.Text;
 
-            if(!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrEmpty(username) && username != " ")
             {
                 userExistslist = SqliteDataAccess.userExists(username);
 
-                for (int i = 0; i < userExistslist.Count; i++)
+                if (userExistslist != null)
                 {
-                    userExistsValue = userExistslist[i];
+                    for (int i = 0; i < userExistslist.Count; i++)
+                    {
+                        userExistsValue = userExistslist[i];
+                    }
+
+                    if (userExistsValue == 1)
+                    {
+                        txtEnterUsername.Text = "";
+                        errorLabelNoUser.Text = "";
+
+                        userReadlists = SqliteDataAccess.retriveUserLogin(username);
+                        frmReadlist thirdform = new frmReadlist(userReadlists, username);
+
+                        thirdform.ShowDialog();
+                        this.Hide();
+                        this.Show();
+                    }
+                    else
+                    {
+                        txtEnterUsername.Text = "";
+                        MessageBox.Show("Username doesn't exist!");
+                    }
                 }
-
-                if (userExistsValue == 1)
-                {
-                    txtEnterUsername.Text = "";
-                    errorLabelNoUser.Text = "";
-
-                    /*===============================================================================================*/
-
-                    userReadlists = SqliteDataAccess.retriveUserLogin(username);
-                    frmReadlist thirdform = new frmReadlist(userReadlists, username);
-
-                    /*===============================================================================================*/
-
-                    thirdform.ShowDialog();
-                    this.Hide();
-                    this.Show();
-                }
-                else
-                {
-                    txtEnterUsername.Text = "";
-                    MessageBox.Show("Username doesn't exist!");
-                }
+                else { MessageBox.Show(unknownError); }
             }
-            else
-            {
-                MessageBox.Show(inputError);
-            }
-            
+            else { MessageBox.Show(inputError); }
         }
     }
 }

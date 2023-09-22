@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_2023
@@ -44,8 +38,6 @@ namespace Project_2023
          form to open again.*/
         private void btnConfirmProfileDetails_Click(object sender, EventArgs e)
         {
-            string errorLabel = null;
-
             UserModel u = new UserModel
             {
                 Username = txtCreateUsername.Text,
@@ -53,30 +45,34 @@ namespace Project_2023
                 LastName = txtLastName.Text,
             };
 
-            if (!string.IsNullOrEmpty(txtCreateUsername.Text) && 
-                !string.IsNullOrEmpty(txtFirstName.Text) && 
-                !string.IsNullOrEmpty(txtLastName.Text))
+            if (!string.IsNullOrEmpty(txtCreateUsername.Text) &&
+                !string.IsNullOrEmpty(txtFirstName.Text) &&
+                !string.IsNullOrEmpty(txtLastName.Text) &&
+                !txtCreateUsername.Text.Any(Char.IsWhiteSpace))
             {
-                errorLabel = SqliteDataAccess.addUser(u);
-                MessageBox.Show(errorLabel);
-
+                string error = SqliteDataAccess.addUser(u);
                 txtCreateUsername.Text = "";
                 txtFirstName.Text = "";
                 txtLastName.Text = "";
 
 
-                if (errorLabel == null)
+                if (error == null)
                 {
                     this.Close();
                 }
+                else { MessageBox.Show("Username has to be unique."); }
             }
             else
             {
-                MessageBox.Show(inputError);
+                if (!txtCreateUsername.Text.Any(Char.IsWhiteSpace))
+                {
+                    MessageBox.Show(inputError);
+                }
+                else
+                {
+                    MessageBox.Show("Username cannot contain any spaces");
+                }
             }
-
-            
         }
-
     }
 }

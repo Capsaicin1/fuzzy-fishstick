@@ -117,4 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label9.Text" xml:space="preserve">
+    <value> - Adding a book to a readlist is simple.
+ - Start by entering in the Title, Author, and
+ - the Genre of the book. 
+ - Then, select the readlist you want to add
+ - the book to and click 'Add To Readlist'.
+</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value> - To view the books in a readlist, 
+ - select a readlist from the dropdown 
+ - underneath the 'My Readlists' section and
+ - click 'Select'. All the books in that readlist 
+ - will appear in the box below.
+</value>
+  </data>
 </root>
